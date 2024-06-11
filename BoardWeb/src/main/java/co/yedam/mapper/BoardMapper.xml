@@ -12,6 +12,28 @@
 	  order by board_no
 	</select>
 	
+	<!-- 단건 조회 -->
+	<select id="selectBoard" parameterType="Integer" resultType="co.yedam.vo.BoardVO">
+	  select *
+	  from board_tbl
+	  where board_no = #{boardNo}
+	</select>
 	
+	<!-- 등록 -->
+	<insert id="insertBoard" parameterType="co.yedam.vo.BoardVO">
+	  insert into board_tbl(board_no, title, content, writer) <!-- 컬럼명 -->
+	  values(#{boardNo}, #{title}, #{content}, #{writer}) <!-- 필드명 -->
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateBoard" parameterType="co.yedam.vo.BoardVO">
+	  update board_tbl set content = #{content} where board_no = #{boardNo}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteBoard" parameterType="co.yedam.vo.BoardVO">
+		delete from board_tbl where board_no = #{boardNo}
+	</delete>
+
 
 </mapper>

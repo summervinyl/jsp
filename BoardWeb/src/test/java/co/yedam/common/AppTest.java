@@ -21,10 +21,40 @@ public static void main(String[] args) {
 	//interface 구현
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 	
+	
+	//목록 조회
 	List<BoardVO> list = mapper.boardList();
 	for(BoardVO bvo : list) {
 		System.out.println(bvo.toString());
 	}
+	
+
+	//단건 조회	
+	System.out.println(mapper.selectBoard(1));
+	
+	
+	//등록
+	BoardVO board = new BoardVO();
+//	board.setBoardNo(list.size()+1);
+//	board.setTitle("제목없음");
+//	board.setContent("내용없음");
+//	board.setWriter("이름없음");
+//	board.setClickCnt(0);	
+//	System.out.println(mapper.insertBoard(board));
+//	sqlSession.commit();
+	
+	
+	//수정	
+//	board.setContent("이성민 짜증");
+//	board.setBoardNo(5);
+//	System.out.println(mapper.updateBoard(board));
+//	sqlSession.commit();
+	
+
+	//삭제
+	if(mapper.deleteBoard(5) == 1) System.out.println("삭제");
+	else System.out.println("실패!");
+	sqlSession.commit();
 }
 	
 //	public static void main(String[] args) {

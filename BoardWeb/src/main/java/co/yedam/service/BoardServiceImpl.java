@@ -20,29 +20,27 @@ public class BoardServiceImpl implements BoardService {
 		//mapper에 등록된 기능 활용
 		return mapper.boardList(); //boardList 컨트롤 -- 서비는 
 	}
-
+	
+	
 	@Override
 	public BoardVO getBoard(int bno) {
-		// TODO Auto-generated method stub
 		return mapper.selectBoard(bno);
 	}
 
 	@Override
 	public boolean addBoard(BoardVO bvo) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapper.insertBoard(bvo) == 1;
 	}
 
 	@Override
 	public boolean editBoard(BoardVO bvo) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapper.updateBoard(bvo) == 1;
 	}
 
 	@Override
 	public boolean removeBoard(int bno) {
 		// TODO Auto-generated method stub
-		return false;
+		return mapper.deleteBoard(bno) == 1;
 	}
 	
 	
