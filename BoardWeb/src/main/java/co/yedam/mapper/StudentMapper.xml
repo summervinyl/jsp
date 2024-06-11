@@ -23,7 +23,18 @@
 	</update>
 	
 	<delete id="deleteStudent" parameterType="co.yedam.vo.Student">
-		delete tbl_student where std_no = #{stdNo}
-	</delete>	
+		delete from tbl_student where std_no = #{stdNo}
+		<!-- delete tbl_student where std_no = #{stdNo}  -->
+	</delete>
+	
+	<!-- 단건 조회 메소드 -->
+	<select id="getStudent" parameterType="string" resultType="co.yedam.vo.Student">
+	<!-- id=메소드 이름, 들어오는 값은 스트링, 반환된느 값은 resylt타입 -->
+	<!--  string 소문자르 쓰는이유 alias (별칭)-->
+	<!-- select태그 / id=속성  -->
+		select *
+		from   tbl_student
+		where  std_no = #{stdNo}
+	</select>
 	
 </mapper>

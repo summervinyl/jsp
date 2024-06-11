@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%5level [%thread] - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="co.yedam.mapper.StudentMapper">
+   <!-- <level value="trace"/> --> <!-- 모두 보여주기 -->
+    <level value="debug"/> <!-- 필요한 것만 보여줌 -->
+  </logger>
+  <root level="error">
+    <appender-ref ref="stdout"/>
+  </root>
+  
+  <logger name="co.yedam.mapper.BoardMapper">
+   <!-- <level value="trace"/> --> <!-- 모두 보여주기 -->
+    <level value="debug"/> <!-- 필요한 것만 보여줌 -->
+  </logger>
+  <root level="error">
+    <appender-ref ref="stdout"/>
+  </root>
+
+</configuration>

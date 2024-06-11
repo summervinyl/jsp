@@ -5,27 +5,44 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import co.yedam.mapper.BoardMapper;
 import co.yedam.mapper.StudentMapper;
+import co.yedam.vo.BoardVO;
 import co.yedam.vo.Student;
 
 public class AppTest {
 	
-	public static void main(String[] args) {
+public static void main(String[] args) {
+	
+	SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	
+	//interface 구현
+	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+	
+	List<BoardVO> list = mapper.boardList();
+	for(BoardVO bvo : list) {
+		System.out.println(bvo.toString());
+	}
+}
+	
+//	public static void main(String[] args) {
 		//00. DB 접근
-		SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		//sqlSession : DB 접속 쿼리 가져옴
+//		SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		//sqlSession : DB 접속 쿼리 가져옴
 		
 		//interface 와 구현객체의 관계 설정, 연결지어주기
-		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+//		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		//StudentMapper.java를 객체처럼 사용 접근하기 위해서 --필수 아님
 		
 		//01. 객체 생성
-		Student std = new Student();
-		std.setStdNo("S0010");
-		std.setStdName("서현진");
-		std.setPhone("010-1231-1231");
-		std.setBldType("A");
+//		Student std = new Student();
+//		std.setStdNo("S0010");
+//		std.setStdName("서현진");
+//		std.setPhone("010-1231-1231");
+//		std.setBldType("A");
 		
 		//02. 객체를 DB에 넣기
 //		sqlSession.insert("co.yedam.mapper.StudentMapper.insertStudent", std);
@@ -44,20 +61,20 @@ public class AppTest {
 //		sqlSession.commit();
 		
 		//05. list console에 출력
-		List<Student> list //
-//				= sqlSession.selectList("co.yedam.mapper.StudentMapper.selectBlog");
-				= mapper.selectBlog();
-		for (Student std1 : list) {
-			System.out.println(std1.toString());
-		}
-		
-		
-	}	
-	
+//		List<Student> list //
+////				= sqlSession.selectList("co.yedam.mapper.StudentMapper.selectBlog");
+//				= mapper.selectBlog();
+//		for (Student std1 : list) {
+//			System.out.println(std1.toString());
+//		}
+//		
+//		
+//	}	
+//	
 	
 //	public static void main(String[] args) {
 //		
-//		insert();
+//		insert2();
 //
 //	}
 //	
@@ -97,7 +114,7 @@ public class AppTest {
 //				
 //		//01. 객체 생성
 //		Student std = new Student();
-//		std.setStdNo("S0010");
+//		std.setStdNo("S0011");
 //		std.setStdName("서현진");
 //		std.setPhone("010-1231-1231");
 //		std.setBldType("A");

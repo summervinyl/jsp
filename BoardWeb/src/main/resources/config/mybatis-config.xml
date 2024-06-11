@@ -19,5 +19,6 @@
    </environments>
    <mappers>
     <mapper resource="co/yedam/mapper/StudentMapper.xml"/>
+    <mapper resource="co/yedam/mapper/BoardMapper.xml"/>
    </mappers>
 </configuration>
