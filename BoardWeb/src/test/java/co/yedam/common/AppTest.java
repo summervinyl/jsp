@@ -6,9 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import co.yedam.mapper.BoardMapper;
-import co.yedam.mapper.StudentMapper;
+import co.yedam.service.BoardService;
+import co.yedam.service.BoardServiceImpl;
 import co.yedam.vo.BoardVO;
-import co.yedam.vo.Student;
 
 public class AppTest {
 	
@@ -23,14 +23,25 @@ public static void main(String[] args) {
 	
 	
 	//목록 조회
-	List<BoardVO> list = mapper.boardList();
-	for(BoardVO bvo : list) {
-		System.out.println(bvo.toString());
-	}
+//	List<BoardVO> list = mapper.boardList();
+//	for(BoardVO bvo : list) {
+//		System.out.println(bvo.toString());
+//	}
+	
+	
+	//페이지 조회
+//	List<BoardVO> list1 = mapper.boardListPaging(1);
+//	for(BoardVO bvo : list1) {
+//		System.out.println(bvo.toString());
+//	}
+	
 	
 
-	//단건 조회	
-	System.out.println(mapper.selectBoard(1));
+	//단건 조회
+	BoardService svc = new BoardServiceImpl();
+	System.out.println(svc.getBoard(100));
+	
+	System.out.println(mapper.selectBoard(100));
 	
 	
 	//등록
@@ -45,16 +56,16 @@ public static void main(String[] args) {
 	
 	
 	//수정	
-//	board.setContent("이성민 짜증");
+//	board.setContent("안녕");
 //	board.setBoardNo(5);
 //	System.out.println(mapper.updateBoard(board));
 //	sqlSession.commit();
 	
 
 	//삭제
-	if(mapper.deleteBoard(5) == 1) System.out.println("삭제");
-	else System.out.println("실패!");
-	sqlSession.commit();
+//	if(mapper.deleteBoard(5) == 1) System.out.println("삭제");
+//	else System.out.println("실패!");
+//	sqlSession.commit();
 }
 	
 //	public static void main(String[] args) {

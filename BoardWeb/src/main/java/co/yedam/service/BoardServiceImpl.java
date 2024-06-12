@@ -15,10 +15,22 @@ public class BoardServiceImpl implements BoardService {
 	SqlSession sqlSession = DataSource.getInstance().openSession(true); //openSession() 투르 넣으면 자동 커밋
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 
+//	@Override
+//	public List<BoardVO> boardList() {
+//		//mapper에 등록된 기능 활용
+//		return mapper.boardList(); //boardList 컨트롤 -- 서비는 
+//	}
+	
 	@Override
-	public List<BoardVO> boardList() {
+	public List<BoardVO> boardList(int page) {
 		//mapper에 등록된 기능 활용
-		return mapper.boardList(); //boardList 컨트롤 -- 서비는 
+		return mapper.boardListPaging(page); //boardList 컨트롤 -- 서비는 
+	}
+	
+	//보드리스트에서 
+	@Override
+	public int boardTotal() {
+		return mapper.getTotalCnt();
 	}
 	
 	

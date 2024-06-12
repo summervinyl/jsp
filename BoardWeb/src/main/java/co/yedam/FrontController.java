@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
+import co.yedam.web.AddForm;
 import co.yedam.web.AddStudent;
+import co.yedam.web.GetBoard;
 import co.yedam.web.MainControl;
 import co.yedam.web.ProductControl;
 import co.yedam.web.StudentForm;
+import co.yedam.web.BoardLsit;
 
 //front -> 요청 url(*.do) -> 실행컨트롤 매칭 :: ex) main.do로 시작하면 이 서블릿을 거친다.
 // main.do 요청이 들어오면 -> FrontController -> WEB-INF/public/main.jsp
@@ -45,17 +48,28 @@ public class FrontController extends HttpServlet {
 		
 		//게시판 목록
 		map.put("/boardList.do", new BoardLsit());
+		
+		//게시글 상세 보기
+		map.put("/getBoard.do", new GetBoard());
+		
+		//게시판 글 등록 화면으로 이동
+		map.put("/addForm.do", new AddForm());
+		
+		//게시글 등록
+		map.put("/addBoard.do", new AddBoard());
 	}
 	
+	
+	//사용자가 정보를 요청하면 service() 자동으로 실행
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//req :
+		
 		String uri = req.getRequestURI(); //BoardWeb/main.do = URI ---- http://localhost/BoardWeb/main.do = URL
 //		System.out.println("uri : " + uri);
 		String context = req.getContextPath(); //BoardWeb : context (프로젝트이름)
 //		System.out.println("context : " + context);
 		//계산해오는 방식
-		String page = uri.substring(context.length()); // main.do : 요청 페이지
+		String page = uri.substring(context.length()); // /main.do : 요청 페이지
 //		System.out.println("page : " + page);
 		
 		//키에 해당되는 값 = 키를 알면 해당되는 밸류 가져올 수 잇음. (Map의 특징)
