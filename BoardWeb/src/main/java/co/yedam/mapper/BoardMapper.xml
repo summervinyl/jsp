@@ -54,7 +54,7 @@
 	<!-- 등록 -->
 	<insert id="insertBoard" parameterType="co.yedam.vo.BoardVO">
 	  insert into board_tbl(board_no, title, content, writer) <!-- 컬럼명 -->
-	  values(#{boardNo}, #{title}, #{content}, #{writer}) <!-- 필드명 -->
+	  values(board_seq.nextval, #{title}, #{content}, #{writer}) <!-- 필드명 -->
 	</insert>
 	
 	<!-- 수정 -->

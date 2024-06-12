@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
+import co.yedam.web.AddBoard;
 import co.yedam.web.AddForm;
 import co.yedam.web.AddStudent;
 import co.yedam.web.GetBoard;
@@ -31,7 +32,7 @@ public class FrontController extends HttpServlet {
 	
 	//생성자
 	public FrontController() {
-		map = new HashMap<>(); //밸류형식으로 값을 ㄷ담을 수 있는
+		map = new HashMap<>(); //밸류형식으로 값을 담을 수 있는
 	}
 	
 	
@@ -56,6 +57,10 @@ public class FrontController extends HttpServlet {
 		map.put("/addForm.do", new AddForm());
 		
 		//게시글 등록
+		map.put("/addBoard.do", new AddBoard());
+		
+		//게시글 삭제
+//		map.put("/", null)
 	}
 	
 	

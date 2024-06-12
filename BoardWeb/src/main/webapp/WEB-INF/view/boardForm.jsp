@@ -1,7 +1,11 @@
+<%@page import="co.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- header -->
 <%@include file="../public/header.jsp" %>
+
+<%
+%>
 
 
 <!-- 제목, 작성자, 내용, 등록버튼 -->
@@ -9,21 +13,17 @@
 <form action="addBoard.do">
 	
 	<label>제목</label>
-	<input type="text"></input>
+	<input type="text" name="title">
 	
 	<label>작성자</label>
-	<input type="text"></input>
+	<input type="text" name="writer">
 	
 	<label>내용</label>
-	<textarea class="form-control"></textarea>
+	<textarea class="form-control" name="content"></textarea>
 	<!-- <textarea rows="" cols=""></textarea> -->
 	
 	<button type="submit">등록</button>
 </form>
-
-
-
-
 
 
 <!-- footer -->
