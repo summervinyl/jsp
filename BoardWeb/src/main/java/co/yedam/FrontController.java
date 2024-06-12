@@ -56,7 +56,6 @@ public class FrontController extends HttpServlet {
 		map.put("/addForm.do", new AddForm());
 		
 		//게시글 등록
-		map.put("/addBoard.do", new AddBoard());
 	}
 	
 	
