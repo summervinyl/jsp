@@ -19,6 +19,7 @@
 	  where board_no = #{boardNo}
 	</select>
 	
+	<!-- 교수님께 여쭤보기 -->
 	<!-- 등록 -->
 	<insert id="insertBoard" parameterType="co.yedam.vo.BoardVO">
 	  insert into board_tbl(board_no, title, content, writer) <!-- 컬럼명 -->
