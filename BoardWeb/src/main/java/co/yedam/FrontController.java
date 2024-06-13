@@ -14,9 +14,16 @@ import co.yedam.web.AddBoard;
 import co.yedam.web.AddForm;
 import co.yedam.web.AddStudent;
 import co.yedam.web.GetBoard;
+import co.yedam.web.LoginControl;
+import co.yedam.web.LoginForm;
+import co.yedam.web.LogoutControl;
 import co.yedam.web.MainControl;
+import co.yedam.web.ModifyForm;
 import co.yedam.web.ProductControl;
+import co.yedam.web.RemoveBoard;
+import co.yedam.web.RemoveForm;
 import co.yedam.web.StudentForm;
+import co.yedam.web.modifyBoard;
 import co.yedam.web.BoardLsit;
 
 //front -> 요청 url(*.do) -> 실행컨트롤 매칭 :: ex) main.do로 시작하면 이 서블릿을 거친다.
@@ -45,6 +52,7 @@ public class FrontController extends HttpServlet {
 		
 		//학생 등록 화면 studentForm.do
 		map.put("/studentForm.do", new StudentForm()); //사용자가 http://localhost/BoardWeb/studentForm.do를 요청하면 new StudentForm() 실행
+		
 		map.put("/addStudent.do", new AddStudent()); //사용자가 등록화면에서 등록하는 기능
 		
 		//게시판 목록
@@ -59,8 +67,26 @@ public class FrontController extends HttpServlet {
 		//게시글 등록
 		map.put("/addBoard.do", new AddBoard());
 		
-		//게시글 삭제
-//		map.put("/", null)
+		//게시글 삭제 화면으로 이동 -- 사용자가 삭제 이동으로 버튼을 클릭시 게시글 상세 화면 표출, 삭제버튼 구현ㄴ
+		map.put("/removeForm.do", new RemoveForm());
+		
+		//게시글 삭제하기! -> 이동했을 시 사용자가 입력한 값을 세팅하고, 삭제 성공시 이동할 페이지와, 실패시 이동할 페이지 설정
+		map.put("/removeBoard.do", new RemoveBoard());
+		
+		//게시글 수정 화면
+		map.put("/modifyForm.do", new ModifyForm());
+		
+		//게시글 수정 처리
+		map.put("/modifyBoard.do", new modifyBoard());
+		
+		//로그인 화면
+		map.put("/loginForm.do", new LoginForm());
+		
+		//로그인 기능
+		map.put("/login.do", new LoginControl());
+		
+		//로그아웃 기능
+		map.put("/logout.do", new LogoutControl());
 	}
 	
 	

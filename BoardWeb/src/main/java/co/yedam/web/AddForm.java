@@ -13,6 +13,7 @@ public class AddForm implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
 		//게시판 글 등록 화면으로 이동하는 기능
 		// 사용자가 /addForm.do를 요청하면 new AddForm()가 실행된다.
 		req.getRequestDispatcher("WEB-INF/view/boardForm.jsp").forward(req, resp);

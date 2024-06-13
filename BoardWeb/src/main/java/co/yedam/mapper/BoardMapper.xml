@@ -59,13 +59,23 @@
 	
 	<!-- 수정 -->
 	<update id="updateBoard" parameterType="co.yedam.vo.BoardVO">
-	  update board_tbl set content = #{content} where board_no = #{boardNo}
+	  update board_tbl set title = #{title}, content = #{content} where board_no = #{boardNo}
 	</update>
 	
 	<!-- 삭제 -->
 	<delete id="deleteBoard" parameterType="co.yedam.vo.BoardVO">
 		delete from board_tbl where board_no = #{boardNo}
 	</delete>
+	
+	
+	<!-- 1건이 있으면 로그인, 1건도 없으면 로그인 조건이 안 됨. -->
+	<select id="selectMember" resultType="int">
+		select count(1)
+		from member_tbl
+		where user_id = #{id}
+		and   user_pw = #{pw}
+	</select>
+	
 
 
 </mapper>

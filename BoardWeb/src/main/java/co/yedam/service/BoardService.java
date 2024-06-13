@@ -15,5 +15,7 @@ public interface BoardService {
 	boolean addBoard(BoardVO bvo); //등록
 	boolean editBoard(BoardVO bvo);
 	boolean removeBoard(int bno);
-
+	
+	//체크멤버(id, pw)
+	boolean checkMember(String id, String pw);
 }
