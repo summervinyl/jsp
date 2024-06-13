@@ -1,6 +1,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  
@@ -20,7 +21,6 @@
 <!-- 태그로 변수 선언과 출력방법 -->
 
 <!-- boardㅓ는 어트리뷰트를 -->
-<p>${board}</p>
 
 <form name="myForm" action="removeForm.do">
 	<input type="hidden" value="${board.boardNo}" name="bno"> <!-- getBo~ 대신 필드명 작성  -->
@@ -28,23 +28,23 @@
 	<table class="table table-sm">
 		<tr>
 			<th class="col-sm-1">글번호</th>
-			<td class="col-sm-7"><c:out value="${board.boardNo}"></c:out></td>
+			<td class="col-sm-7"><c:out value="${board.boardNo}"/></td>
 			<%-- <td class="col-sm-7"><%=board.getBoardNo() %></td> --%>
 			<th class="col-sm-1">조회수</th>
-			<td class="col-sm-3"><c:out value="${board.clickCnt}"></c:out> </td> <!-- 출력이라 out으로  -->
+			<td class="col-sm-3"><c:out value="${board.clickCnt}"/> </td> <!-- 출력이라 out으로  -->
 			<%-- <td class="col-sm-3"><%=board.getClickCnt() %></td> --%>
 		</tr>
 		<tr>
-			<th>제목</th><td colspan="3" ><c:out value="${board.title}"></c:out></td>
+			<th>제목</th><td colspan="3" ><c:out value="${board.title}"/></td>
 		</tr>
 		<tr>
 			<th>내용</th>
 			<td colspan="3">
-			<textarea class="form-control" readonly><c:out value="${board.content}"></c:out></textarea>
+			<textarea class="form-control" readonly><c:out value="${board.content}"/></textarea>
 			</td>
 		</tr>
 		<tr>
-			<th>작성자</th><td colspan="3"><c:out value="${board.writer}"></c:out></td>
+			<th>작성자</th><td colspan="3"><c:out value="${board.writer}"/></td>
 		</tr>
 		<tr>
 			<th>작성일시</th><td colspan="3"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${board.creationDate}"/> </td>
@@ -81,4 +81,4 @@
 
 
 <%-- <%@include file="../public/footer.jsp" %> --%>
-<jsp:include page="../public/footer.jsp"/> 
+<jsp:include page="../public/footer.jsp"/>

@@ -26,29 +26,24 @@ import co.yedam.web.StudentForm;
 import co.yedam.web.modifyBoard;
 import co.yedam.web.BoardLsit;
 
-//front -> 요청 url(*.do) -> 실행컨트롤 매칭 :: ex) main.do로 시작하면 이 서블릿을 거친다.
-// main.do 요청이 들어오면 -> FrontController -> WEB-INF/public/main.jsp
-// 객체생성 -> init -> service -> destroy
-//240611 이 클래스를 거쳐서(통해서) 모든 페이지를 여는 게 목적
-// 모든 요청을 FrontController 이 클래스를 통해서 열기
-//FrontController 얘를 안 거치면 작업을 못하게 하는 게 목적
-//FrontController는 HttpServlet을 상속 받은 서블릿
+// 2024-06-10 월요일 JSP 첫 날
+// front → 서버 요청 url(*.do) → FrontController → 실행 컨트롤 매칭 / [ex] main.do 요청 → FrontController → exec() → WEB-INF/public/main.jsp
+// 객체 생성 -> init() 서블릿 로딩 -> service() -> destroy() 제거
+// FrontController는 HttpServlet을 상속 받은 servlet
 public class FrontController extends HttpServlet {
 	//필드 선언
 	private Map<String, Control> map; //map = key:url, value:control
 	
 	//생성자
 	public FrontController() {
-		map = new HashMap<>(); //밸류형식으로 값을 담을 수 있는
+		map = new HashMap<>(); //HashMap : 컬렉션의 하나로 데이터를 키(Key)와 밸류(Value)의 짝으로 저장
 	}
-	
 	
 	@Override
 	public void init() throws ServletException {
 		map.put("/main.do", new MainControl());
+		
 		map.put("/product.do", new ProductControl());
-//		map.put("/main.do", "Main페이지입니다"); //key와 value
-//		map.put("/product.do", "상품 페이지입니다"); //페이지 실행시 해당되는 출력문 console에 출력
 		
 		//학생 등록 화면 studentForm.do
 		map.put("/studentForm.do", new StudentForm()); //사용자가 http://localhost/BoardWeb/studentForm.do를 요청하면 new StudentForm() 실행
@@ -98,7 +93,6 @@ public class FrontController extends HttpServlet {
 //		System.out.println("uri : " + uri);
 		String context = req.getContextPath(); //BoardWeb : context (프로젝트이름)
 //		System.out.println("context : " + context);
-		//계산해오는 방식
 		String page = uri.substring(context.length()); // /main.do : 요청 페이지
 //		System.out.println("page : " + page);
 		

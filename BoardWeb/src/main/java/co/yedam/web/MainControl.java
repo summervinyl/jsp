@@ -22,28 +22,23 @@ public class MainControl implements Control{
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//객체 선언 : 중요한 부분 !
 		Student student = new Student();
-		student.setStdNo("S0012");
-		student.setStdName("다니엘");
-		student.setPhone("000-0000-0000");
+//		student.setStdName("-ˋˏ ♡ ˎˊ-");
 		
 		SqlSession sqlSession = DataSource.getInstance().openSession();
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		//StudentMapper.xml이 클래스 역할
 		//getMapper : 매칭작업
 		//StudentMapper : 인터페이스
-		List<Student> list = mapper.selectBlog();
 		
+		List<Student> list = mapper.selectBlog();		
 		
-		//생성된 student 객체 정보를 jsp로 전달하고 싶을 
-		//req~ 에다가 정보를 담아서 전달
-		req.setAttribute("student", student); //student속성지정, 실제값
-		req.setAttribute("studentList", list); //main.jsp가 list를 읽어들이면
+		req.setAttribute("student", student);  //student 속성(이름) 지정, 실제 값
+		req.setAttribute("studentList", list);		
 		
-		
-		
-		System.out.println("요청정보: "+ req + ", 응답정보: " + resp);
-		//WEB-INF/public/main.jsp -- 사람들이 main.do를 치면 이 클래스를 보여준다?
-		//mian.do 호출->main.jsp로 페이지 재 지정 :서블릿에서는 html을 쓰면 코드가 길어진다. main.jsp로 페이지 재 지정.
+		//System.out.println("요청정보: "+ req + ", 응답정보: " + resp);
+		//WEB-INF/public/main.jsp -- 사용자가 main.do를 주소에 입력하면(요청) 필요한 정보를 담아서 main.jsp로 전달
+		//~.do 호출 → FrontController.java에서 호출한 페이지가 유요한지 검사 후 해당 컨트롤러 exec()실행 → 해당 컨트롤러에서 필요한 데이터를 들고 ~.jsp로 페이지 재지정
+		//페이지 재지정하는 이유 : 서블릿에서는 html을 쓰면 코드가 길어진다. 고로 jsp로 재지정. 톰캣이 jsp를 실행하면 java파일로 변환된다.
 		req.getRequestDispatcher("WEB-INF/public/main.jsp").forward(req, resp); //매개값으로 이동할 페이지 지정 후
 		//인터페이스에 없는 기능 구현시 오류, 그래서 인터페이스에 똑같이 써준다.
 		//하단에 servers 리스타트 - http://localhost/BoardWeb/main.do 실행시 main.jsp페이지 실행
