@@ -13,6 +13,6 @@
   <!-- 요청페이지 재지정 -->
   
   <h3>Hello, World!!</h3>
-  <a href="public/main.jsp">main 페이지로 이동</a>  
+  <a href="public/main.jsp">main 페이지로 이동</a>
 </body>
 </html>

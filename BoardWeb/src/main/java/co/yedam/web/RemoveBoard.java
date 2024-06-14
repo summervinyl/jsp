@@ -18,12 +18,14 @@ public class RemoveBoard implements Control {
 		// TODO 삭제 기능 구현
 		
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		
-		BoardService svc = new BoardServiceImpl();
-		
+		BoardService svc = new BoardServiceImpl();		
 		
 		if(svc.removeBoard(Integer.parseInt(bno))) {
-			resp.sendRedirect("boardList.do");
+			resp.sendRedirect("boardList.do?page="+page+"&searchCondition="+sc+"&keyword="+kw);
 		} else {
 			req.getRequestDispatcher("WEB-INF/view/removeBoardFrom.jsp").forward(req, resp);
 		}

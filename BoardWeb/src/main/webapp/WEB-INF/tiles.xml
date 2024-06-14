@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="myapp.homepage"
+		template="/layouts/classic.jsp">
+		<put-attribute name="title" value="Tiles tutorial homepage" />
+		<put-attribute name="header" value="/tiles/banner.jsp" />
+		<put-attribute name="menu" value="/tiles/common_menu.jsp" />
+		<put-attribute name="body" value="/tiles/home_body.jsp" />
+		<put-attribute name="footer" value="/tiles/credits.jsp" />
+	</definition>
+
+	<definition name="myapp.homepage2" extends="myapp.homepage">
+		<put-attribute name="body" value="/WEB-INF/view/loginForm.jsp" />
+	</definition>
+
+	<definition name="boardapp" template="/WEB-INF/layout/boardTemp.jsp">
+		<put-attribute name="title" value="Tiles tutorial homepage" />
+		<put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/menu.jsp" />
+		<!-- <put-attribute name="header" value="/WEB-INF/layout/header.jsp" /> 
+			 <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
+			 <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" /> -->
+	</definition>
+
+	<definition name="WILDCARD:board/*" extends="boardapp">
+		<put-attribute name="body" value="/WEB-INF/view/board/{1}.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:member/*" extends="boardapp">
+		<put-attribute name="body" value="/WEB-INF/view/member/{1}.jsp" />
+	</definition>
+</tiles-definitions>

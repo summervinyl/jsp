@@ -19,6 +19,9 @@ public class ModifyForm implements Control {
 		
 		String bno = req.getParameter("bno");
 		//게시글 번호 bno 정보 조회
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO board = svc.getBoard(Integer.parseInt(bno));
@@ -26,7 +29,12 @@ public class ModifyForm implements Control {
 		
 		//요청정보의 attribute(=board)
 		req.setAttribute("board", board);
+		req.setAttribute("page", page);
 		//리퀘스트에 담아서 넘겨준다.
+		
+		//페이지 이동시 현재 페이지 전달
+		req.setAttribute("searchCondition", sc);
+		req.setAttribute("keyword", kw);
 		
 		req.getRequestDispatcher("WEB-INF/view/modifyBoardForm.jsp").forward(req, resp);		
 	}

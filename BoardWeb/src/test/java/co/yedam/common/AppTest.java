@@ -22,6 +22,11 @@ public static void main(String[] args) {
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 	
 	
+	SearchVO search = new SearchVO(1, "T", "자바");
+	
+	mapper.boardListPaging(search).forEach(bvo -> System.out.println(bvo));
+	
+	
 	//목록 조회
 //	List<BoardVO> list = mapper.boardList();
 //	for(BoardVO bvo : list) {
@@ -38,14 +43,14 @@ public static void main(String[] args) {
 	
 
 	//단건 조회
-	BoardService svc = new BoardServiceImpl();
-	System.out.println(svc.getBoard(100));
-	
-	System.out.println(mapper.selectBoard(100));
+//	BoardService svc = new BoardServiceImpl();
+//	System.out.println(svc.getBoard(100));
+//	
+//	System.out.println(mapper.selectBoard(100));
 	
 	
 	//등록
-	BoardVO board = new BoardVO();
+//	BoardVO board = new BoardVO();
 //	board.setBoardNo(list.size()+1);
 //	board.setTitle("제목없음");
 //	board.setContent("내용없음");

@@ -12,7 +12,7 @@ import co.yedam.service.BoardService;
 import co.yedam.service.BoardServiceImpl;
 import co.yedam.vo.BoardVO;
 
-public class modifyBoard implements Control {
+public class ModifyBoard implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,7 +21,11 @@ public class modifyBoard implements Control {
 		//modifyBoard,do?bno=1&title=1-자바&content=감자바
 		String bno = req.getParameter("bno");
 		String title = req.getParameter("title");
-		String content = req.getParameter("content");		
+		String content = req.getParameter("content");
+		String page = req.getParameter("page");
+		
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		
 		//editBoard 매개값 전달하기 위해 BoardVO 객체 생성
 		BoardVO bv = new BoardVO();
@@ -33,10 +37,10 @@ public class modifyBoard implements Control {
 		 
 		
 		if(svc.editBoard(bv)) {
-			resp.sendRedirect("boardList.do");			
+			resp.sendRedirect("boardList.do?searchCondition="+sc+"&keyword="+kw+"&page="+page);
 		} else {
 			req.getRequestDispatcher("WEB-INF/view/modifyBoardForm.jsp").forward(req, resp);
-		}	 
+		}
 		
 		
 		

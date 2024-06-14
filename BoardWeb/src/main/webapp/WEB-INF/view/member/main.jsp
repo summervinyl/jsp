@@ -6,7 +6,6 @@
 <!-- JSTL  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
-<jsp:include page="../public/header.jsp"/>
 	<p> </p>
 	<h3 style="color:navy; text-align:center;">MAIN PAGE</h3>
 	<h6 style="color:#859f92; text-align:center;">-ˋˏ ♡ ˎˊ-</h6>
@@ -60,4 +59,3 @@
 	<%}%>
 	</ul> --%>
 
-<jsp:include page="../public/footer.jsp"/>

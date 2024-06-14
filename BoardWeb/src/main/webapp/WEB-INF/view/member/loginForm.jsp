@@ -7,7 +7,6 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="cust" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
-<jsp:include page="../public/header.jsp" />
 <%-- <%@include file="../public/header.jsp" %> --%>
 <h3>로그인 화면(/loginForm.jsp)</h3>
 <cust:line/>
@@ -16,12 +15,11 @@
 
 
 <!-- {} 이엘표현식? jsp에서만 -->
-<c:set var="name" value="aa" />
-<c:out value="${name == 'aa' ? '맞음' : '다름'}" />
-
-<c:forEach var="i" begin="1" end="10" step="1">
+<%-- <c:set var="name" value="aa" />
+<c:out value="${name == 'aa' ? '맞음' : '다름'}" /> --%>
+<%-- <c:forEach var="i" begin="1" end="10" step="1">
 	<p>${i}</p>
-</c:forEach>
+</c:forEach> --%>
 
 
 <!-- form은 사용자가 클릭을 했을 때 액션 지정 -->
@@ -44,7 +42,5 @@
 	</table>
 </form>
 
-
 <!-- footer -->
 <%-- <%@include file="../public/footer.jsp" %> --%>
-<jsp:include page="../public/footer.jsp" />

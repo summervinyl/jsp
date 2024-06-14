@@ -15,13 +15,50 @@
 	
 	
 	<!-- 한페이지 5건씩 조회 -->
-	<select id="boardListPaging" parameterType="int" resultType="co.yedam.vo.BoardVO">
-	<!-- 꺽새를 쓸 때에는 <![CDATA[]]>를 써준다. -->
-	
+	<select id="boardListPaging" parameterType="co.yedam.common.SearchVO" resultType="co.yedam.vo.BoardVO">
+	<!-- 꺽새를 쓸 때에는 <![CDATA[]]>를 써준다. -->	
 	  select b.*
 	  from   (select rownum rn, a.*
 	          from  (select *
 	                 from board_tbl
+<!-- 
+	                 <choose>
+	                 테스트에 조건 넣기
+	                 	서치 컨디션이 T면 타이틀이 나오게
+	                 	<when test="searchCondition == 'T'.toString()">
+	                 	 title like '%'||#{keyword}||'%'
+	                 	</when>
+	                 	
+	                 	<when test="searchCondition == 'W'.toString()">
+	                 	 writer like '%'||#{keyword}||'%'	                 		
+	                 	</when>
+	                 	
+	                 	<when test="searchCondition == 'TW'.toString()">
+	                 	 title like '%'||#{keyword}||'%' or writer like '%'||#{keyword}||'%'
+	                 	</when>
+	                 	
+	                 	<otherwise>
+	                 	 1 = 1
+	                 	</otherwise>
+	                 </choose> -->
+	                 <!-- otherwise 대신에 where절 넣기 -->
+	                 <where>
+	                 <choose>
+	                 <!-- 테스트에 조건 넣기 -->
+	                 	<!-- 서치 컨디션이 T면 타이틀이 나오게 -->
+	                 	<when test="searchCondition == 'T'.toString()">
+	                 	 title like '%'||#{keyword}||'%'
+	                 	</when>
+	                 	
+	                 	<when test="searchCondition == 'W'.toString()">
+	                 	 writer like '%'||#{keyword}||'%'	                 		
+	                 	</when>
+	                 	
+	                 	<when test="searchCondition == 'TW'.toString()">
+	                 	 title like '%'||#{keyword}||'%' or writer like '%'||#{keyword}||'%'
+	                 	</when>
+	                 </choose>
+	                 </where>
 	                 order by board_no) a
 	          <![CDATA[
 	          where rownum <= (#{page} * 5) ) b
@@ -30,9 +67,27 @@
 	</select>
 	
 	
-	<select id="getTotalCnt" resultType="int">
+	
+	<select id="getTotalCnt" parameterType="co.yedam.common.SearchVO" resultType="int">
 	  select count(1)
 	  from board_tbl
+      <where>
+         <choose>
+         <!-- 테스트에 조건 넣기 -->
+         	<!-- 서치 컨디션이 T면 타이틀이 나오게 -->
+         	<when test="searchCondition == 'T'.toString()">
+         	 title like '%'||#{keyword}||'%'
+         	</when>
+         	
+         	<when test="searchCondition == 'W'.toString()">
+         	 writer like '%'||#{keyword}||'%'	                 		
+         	</when>
+         	
+         	<when test="searchCondition == 'TW'.toString()">
+         	 title like '%'||#{keyword}||'%' or writer like '%'||#{keyword}||'%'
+         	</when>
+         </choose>
+        </where>
 	</select>
 	
 	

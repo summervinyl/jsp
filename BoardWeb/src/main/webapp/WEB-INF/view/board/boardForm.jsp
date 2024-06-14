@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- header -->
-<jsp:include page="../public/header.jsp" />
 
 <%-- <%
  String id = (String) session.getAttribute("loginID");
@@ -31,4 +30,3 @@
 
 
 <!-- footer -->
-<jsp:include page="../public/footer.jsp" />

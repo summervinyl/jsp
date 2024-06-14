@@ -23,7 +23,7 @@ import co.yedam.web.ProductControl;
 import co.yedam.web.RemoveBoard;
 import co.yedam.web.RemoveForm;
 import co.yedam.web.StudentForm;
-import co.yedam.web.modifyBoard;
+import co.yedam.web.ModifyBoard;
 import co.yedam.web.BoardLsit;
 
 // 2024-06-10 월요일 JSP 첫 날
@@ -72,7 +72,7 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyForm.do", new ModifyForm());
 		
 		//게시글 수정 처리
-		map.put("/modifyBoard.do", new modifyBoard());
+		map.put("/modifyBoard.do", new ModifyBoard());
 		
 		//로그인 화면
 		map.put("/loginForm.do", new LoginForm());

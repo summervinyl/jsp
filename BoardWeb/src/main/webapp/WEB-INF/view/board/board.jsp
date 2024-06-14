@@ -5,7 +5,6 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  
- <jsp:include page="../public/header.jsp"/>
     
 <%-- <%@include file="../public/header.jsp" %> --%>
 <!-- include:포함시키다. -->
@@ -25,6 +24,10 @@
 <form name="myForm" action="removeForm.do">
 	<input type="hidden" value="${board.boardNo}" name="bno"> <!-- getBo~ 대신 필드명 작성  -->
 	<%-- <input type="hidden" value="<%=board.getBoardNo() %>" name="bno"> --%> <!-- 폼태그 안의 파라미터는 인풋태그  -->
+	<!--hidden 화면에 보이진 않지만 전달-->
+	<input type="hidden" value="${searchCondition }" name="searchCondition">
+	<input type="hidden" value="${keyword }" name="keyword">
+	<input type="hidden" value="${page }" name="page">
 	<table class="table table-sm">
 		<tr>
 			<th class="col-sm-1">글번호</th>
@@ -62,10 +65,10 @@
 				  <button type="button" disabled class="btn btn-warning">수정 이동</button>
 				</c:otherwise>
 			</c:choose>
+			<a href="boardList.do?page=${page}&searchCondition=${searchCondition}&keyword=${keyword }" class="btn btn-success">목록</a> <!-- 클라이언트가 요정하는 주소 입력 -->
 			</td>
 		</tr>
 	</table>
-	<p><a href="boardList.do?page=${page}" class="btn btn-success">목록</a></p> <!-- 클라이언트가 요정하는 주소 입력 -->
 </form>
 
 <script>
@@ -78,7 +81,5 @@
 	});
 	
 </script>
-
-
 <%-- <%@include file="../public/footer.jsp" %> --%>
-<jsp:include page="../public/footer.jsp"/>
+<%-- <jsp:include page="../public/footer.jsp"/> --%>

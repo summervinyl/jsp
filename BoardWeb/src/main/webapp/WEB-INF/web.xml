@@ -4,7 +4,25 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
 	<display-name>BoardWeb</display-name>
-
+	
+	<!-- 1) 라이브러리 다운로드 -->
+	<!-- 2) Tiles listener 등록 -->
+	<!-- https://tiles.apache.org/framework/tutorial/configuration.html -->
+	<listener>
+   		 <listener-class>org.apache.tiles.extras.complete.CompleteAutoloadTilesListener</listener-class>
+	</listener>
+	<!-- 3) TilesDispatcherServlet 등록 -->
+	<!-- https://tiles.apache.org/framework/tutorial/configuration.html -->
+	<servlet>
+	    <servlet-name>Tiles Dispatch Servlet</servlet-name>
+	    <servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Tiles Dispatch Servlet</servlet-name>
+	    <url-pattern>*.tiles</url-pattern>
+	</servlet-mapping>
+	
+	
 	<!-- 서블릿 매칭. -->
 	<servlet>
 		<servlet-name>front</servlet-name>

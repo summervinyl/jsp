@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,32 +15,10 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
-	    <%
-	      String loginID = (String) session.getAttribute("loginID");
-	    %>
-	    <!-- logID 값이 담겨져 있으면 -->
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-            <%if (loginID == null){ //로그인 값이 없으면 %>
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap(Guest)</div>
-            <%}else { //로그인 값이 있으면%>
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap(<%=loginID %>)</div>
-            <%} %>
-                <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="main.do">메인페이지</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="studentForm.do">학생정보등록화면</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글목록</a>
-                    <% if (loginID != null)  { %>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글등록</a>
-                    <% } %>
-                    <% if (loginID == null) { %>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그인</a>
-                    <% }else{ %>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃</a>
-                    <% } %>
-                </div>
-            </div>
+            <!-- tiles.xml에서 만든 menu를 Attribute -->
+			<tiles:insertAttribute name="menu" />
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
@@ -55,7 +34,7 @@
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
+									<a class="dropdown-item" href="#!">Another action</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#!">Something else here</a>
                                     </div>
@@ -66,3 +45,14 @@
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
+					<!-- tiles.xml에서 어트리뷰트한 jap페이지를 body attribute에 넣겠다. -->
+					<tiles:insertAttribute name="body" />					
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

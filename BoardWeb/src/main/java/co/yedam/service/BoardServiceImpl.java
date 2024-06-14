@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
+import co.yedam.common.SearchVO;
 import co.yedam.mapper.BoardMapper;
 import co.yedam.mapper.StudentMapper;
 import co.yedam.vo.BoardVO;
@@ -21,16 +22,21 @@ public class BoardServiceImpl implements BoardService {
 //		return mapper.boardList(); //boardList 컨트롤 -- 서비는 
 //	}
 	
+//	@Override
+//	public List<BoardVO> boardList(int page) {
+//		//mapper에 등록된 기능 활용
+//		return mapper.boardListPaging(page); //boardList 컨트롤 -- 서비는 
+//	}
 	@Override
-	public List<BoardVO> boardList(int page) {
+	public List<BoardVO> boardList(SearchVO search) {
 		//mapper에 등록된 기능 활용
-		return mapper.boardListPaging(page); //boardList 컨트롤 -- 서비는 
+		return mapper.boardListPaging(search); //boardList 컨트롤 -- 서비는 
 	}
 	
 	//보드리스트에서 
 	@Override
-	public int boardTotal() {
-		return mapper.getTotalCnt();
+	public int boardTotal(SearchVO search) {
+		return mapper.getTotalCnt(search);
 	}
 	
 	

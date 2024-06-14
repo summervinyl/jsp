@@ -3,9 +3,18 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
-<jsp:include page="../public/header.jsp"/>    
 
 <h3>학생 등록 화면</h3>
+
+	<c:set var="msg" value=""/>	
+	<c:if test="${msg != null}">
+		<c:out value="${'안녕하세요.' }"/>
+	</c:if>
+	
+	<c:set var="name" value="홍길동"/>	
+	<c:if test="${name == '홍길동'}">
+		<c:out value="${'저는 홍길동이 맞습니다.' }"/>
+	</c:if>
 
 <form action="addStudent.do">
 
@@ -33,4 +42,3 @@
 	 
 	</table>
 </form>
-<jsp:include page="../public/footer.jsp"/>

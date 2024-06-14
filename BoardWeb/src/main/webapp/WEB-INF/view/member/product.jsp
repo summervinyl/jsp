@@ -4,7 +4,6 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<jsp:include page="../public/header.jsp" />
 
 <div align="center">
 	<!-- webapp/WEB-INF/view/product.jsp -->
@@ -27,4 +26,3 @@
 	
 	<a href="main.do" style="text-decoration: none; color:blue;"><br>목록 보기</a>
 </div>
-<jsp:include page="../public/footer.jsp"/> 
