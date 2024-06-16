@@ -13,7 +13,6 @@
 <!-- 우리가 직접 만들었던 태그를 갖다 쓰겠다 (line.tag)-->
 <!-- jsp에서 제공해서는 standard tag library = jstl-->
 
-
 <!-- {} 이엘표현식? jsp에서만 -->
 <%-- <c:set var="name" value="aa" />
 <c:out value="${name == 'aa' ? '맞음' : '다름'}" /> --%>
@@ -32,7 +31,7 @@
 		</tr>
 		
 		<tr>
-			<th>비밀번호</th><td><input type="text" name="pw"></td>
+			<th>비밀번호</th><td><input type="password" name="pw"></td>
 		</tr>
 		
 		<tr>

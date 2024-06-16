@@ -105,7 +105,6 @@
 	  <!-- boardNo -->
 	</select>
 	
-	<!-- 교수님께 여쭤보기 -->
 	<!-- 등록 -->
 	<insert id="insertBoard" parameterType="co.yedam.vo.BoardVO">
 	  insert into board_tbl(board_no, title, content, writer) <!-- 컬럼명 -->
@@ -117,7 +116,7 @@
 	  update board_tbl set title = #{title}, content = #{content} where board_no = #{boardNo}
 	</update>
 	
-	<!-- 삭제 -->
+	<!-- 게시글 삭제 -->
 	<delete id="deleteBoard" parameterType="co.yedam.vo.BoardVO">
 		delete from board_tbl where board_no = #{boardNo}
 	</delete>
@@ -131,6 +130,15 @@
 		and   user_pw = #{pw}
 	</select>
 	
-
-
+	<!-- 멤버 등록 : 회원 가입 -->
+	<insert id="insertMember" parameterType="co.yedam.vo.BoardVO">		
+		insert into member_tbl (user_id, user_pw, user_name, responsibility)
+		values (#{id}, #{pw}, #{name}, #{res})
+	</insert>
+	
+	<!-- 멤버 삭제 : 계정 삭제 -->
+	<delete id="deleteMember" parameterType="co.yedam.vo.BoardVO">
+		delete from member_tbl where user_id = #{id}
+	</delete>
+	
 </mapper>

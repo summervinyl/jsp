@@ -9,15 +9,15 @@
         
         <c:choose>
           <c:when test="${empty loginID }">
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">login</a>
+	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">login</a>
+	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="signupForm.do">sign up</a>
           </c:when>
           <c:otherwise>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">게시글 등록</a>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">logout</a>
+	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">게시글 등록</a>
+	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">logout</a>
+	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="deleteAccout.do">delete account</a>
           </c:otherwise>
         </c:choose>
-        
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="studentForm.do">student insert</a>
         
     </div>
 </div>

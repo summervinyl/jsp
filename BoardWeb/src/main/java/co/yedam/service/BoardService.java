@@ -21,4 +21,7 @@ public interface BoardService {
 	
 	//체크멤버(id, pw)
 	boolean checkMember(String id, String pw);
+	
+	//회원가입
+	boolean addMember(BoardVO bvo);
 }
