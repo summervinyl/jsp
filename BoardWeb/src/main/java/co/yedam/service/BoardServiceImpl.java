@@ -7,8 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import co.yedam.common.DataSource;
 import co.yedam.common.SearchVO;
 import co.yedam.mapper.BoardMapper;
-import co.yedam.mapper.StudentMapper;
 import co.yedam.vo.BoardVO;
+import co.yedam.vo.MemberVO;
 
 public class BoardServiceImpl implements BoardService {
 	//업무 프로세스를 따라 실행하기 위한 서비스.
@@ -62,8 +62,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	@Override
-	public boolean checkMember(String id, String pw) {
-		return mapper.selectMember(id, pw) == 1;
+	public MemberVO checkMember(String id, String pw) {
+		return mapper.selectMember(id, pw);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import co.yedam.common.SearchVO;
 import co.yedam.vo.BoardVO;
+import co.yedam.vo.MemberVO;
 
 public interface BoardMapper {
 	//BoardMapper이 구현 클래스 역할을 함.
@@ -21,7 +22,7 @@ public interface BoardMapper {
 	
 	
 	// 회원 id, 회원 pw
-	int selectMember(@Param("id") String id, @Param("pw") String pw);
+	MemberVO selectMember(@Param("id") String id, @Param("pw") String pw);
 	
 	//회원가입
 //	int insertMember(@Param("name") String name, @Param("id") String id, @Param("pw") String pw, @Param("res") String res);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.yedam.common.SearchVO;
 import co.yedam.vo.BoardVO;
+import co.yedam.vo.MemberVO;
 
 public interface BoardService {
 	//목룍, 단건조회, 등록, 수정, 삭제 등의 기능 선언
@@ -20,7 +21,7 @@ public interface BoardService {
 	boolean removeBoard(int bno);
 	
 	//체크멤버(id, pw)
-	boolean checkMember(String id, String pw);
+	MemberVO checkMember(String id, String pw);
 	
 	//회원가입
 	boolean addMember(BoardVO bvo);

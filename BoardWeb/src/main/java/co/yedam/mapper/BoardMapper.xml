@@ -123,8 +123,8 @@
 	
 	
 	<!-- 1건이 있으면 로그인, 1건도 없으면 로그인 조건이 안 됨. -->
-	<select id="selectMember" resultType="int">
-		select count(1)
+	<select id="selectMember" resultType="co.yedam.vo.MemberVO">
+		select *
 		from member_tbl
 		where user_id = #{id}
 		and   user_pw = #{pw}

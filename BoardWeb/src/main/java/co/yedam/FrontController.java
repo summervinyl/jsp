@@ -18,14 +18,16 @@ import co.yedam.web.LoginControl;
 import co.yedam.web.LoginForm;
 import co.yedam.web.LogoutControl;
 import co.yedam.web.MainControl;
+import co.yedam.web.MemberList;
 import co.yedam.web.ModifyForm;
 import co.yedam.web.ProductControl;
 import co.yedam.web.RemoveBoard;
 import co.yedam.web.RemoveForm;
+import co.yedam.web.SctiptForm;
+import co.yedam.web.SignupControl;
 import co.yedam.web.SignupForm;
 import co.yedam.web.StudentForm;
-import co.yedam.web.deleteAccoutForm;
-import co.yedam.web.signupControl;
+import co.yedam.web.DeleteAccoutForm;
 import co.yedam.web.ModifyBoard;
 import co.yedam.web.BoardLsit;
 
@@ -90,10 +92,17 @@ public class FrontController extends HttpServlet {
 		map.put("/signupForm.do", new SignupForm());
 		
 		//회원가입 등록을 누르면 기능 작동
-		map.put("/signup.do", new signupControl());
+		map.put("/signup.do", new SignupControl());
 		
 		//회원탈퇴 페이지로 이동
-		map.put("/deleteAccout.do", new deleteAccoutForm());
+		map.put("/deleteAccout.do", new DeleteAccoutForm());
+		
+		//회원목록 (관리자용 템플릿)
+		map.put("/memberList.do", new MemberList());
+		
+		
+		//자바스크립트 연습용 페이지
+		map.put("/script.do", new SctiptForm());
 		
 	}
 	

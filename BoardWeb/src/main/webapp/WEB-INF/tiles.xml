@@ -29,7 +29,22 @@
 		<put-attribute name="body" value="/WEB-INF/view/board/{1}.jsp" />
 	</definition>
 	
-	<definition name="WILDCARD:member/*" extends="boardapp">
-		<put-attribute name="body" value="/WEB-INF/view/member/{1}.jsp" />
+	
+	
+	<!-- admin -->
+	<definition name="adminapp" template="/WEB-INF/layout/adminTemp.jsp">
+		<put-attribute name="title" value="Tiles tutorial homepage" />
+		<put-attribute name="body" value="/WEB-INF/layout/admin_body.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/admin_menu.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:admin/*" extends="adminapp">
+		<put-attribute name="body" value="/WEB-INF/view/admin/{1}.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="WILDCARD:*/*" extends="boardapp">
+		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
 	</definition>
 </tiles-definitions>
