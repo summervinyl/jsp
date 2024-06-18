@@ -1,13 +1,13 @@
 /**
  * js/ary.js
  * forEach, filter, map, reduce
+ * 2024-06-18
  */
 //배열선언
 const numAry = [23, 17, 5, 41, 30, 12];
 //forEach=메소드 / 매개값은 함수
 
 let result = 0;
-
 numAry.forEach(function(ele, idx, ary) {
 	console.log(`요소: ${ele} 인덱스: ${idx} 배열: ${ary}`);
 	if (ele % 2 == 0) {

@@ -23,7 +23,8 @@
 	</servlet-mapping>
 	
 	
-	<!-- 서블릿 매칭. -->
+	<!-- 서블릿 매칭 -->
+	<!-- 서블릿 맵핑이란 주소를 간결화하여 편리성과 보안성을 높일 수 있다. -->
 	<servlet>
 		<servlet-name>front</servlet-name>
 		<servlet-class>co.yedam.FrontController</servlet-class>
@@ -33,9 +34,8 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-
+	<!-- welcome-file-list은 BoardWeb이 시작되었을 때 가장 먼저 실행되는 페이지 -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
-		<!-- index.jsp 가 실행되는 이유  -->
 	</welcome-file-list>
 </web-app>

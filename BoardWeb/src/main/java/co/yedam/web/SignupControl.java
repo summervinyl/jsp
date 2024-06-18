@@ -15,7 +15,6 @@ public class SignupControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// 회원이 입력한 정보 가져오기
 		String name = req.getParameter("name");
 		String id = req.getParameter("id");
@@ -37,7 +36,6 @@ public class SignupControl implements Control {
 		}else {
 			resp.sendRedirect("signupForm.do");
 		}
-
 
 	}
 

@@ -7,8 +7,7 @@
   	<!-- 실행할 서블릿의 정보 입력 -->
   	<servlet-name>second</servlet-name>
   	<servlet-class>co.yedam.SecondServlet</servlet-class>  
-  </servlet>
-  
+  </servlet>  
   
   <servlet-mapping>
  	 <servlet-name>second</servlet-name>
