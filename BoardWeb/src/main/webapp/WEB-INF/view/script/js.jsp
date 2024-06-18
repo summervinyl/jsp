@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- script/js.jsp -->
-<h3>자바스크립트 연습 페이지</h3>
 
+<div id="dom">
+<h3>자바스크립트 연습 페이지</h3>
 <ul id="fruit">
   <li> apple </li>
   <li> banana </li>
@@ -46,7 +47,98 @@
   <tbody id="memberList"></tbody>
 </table>
 
+<!-- select태그는 input태그와같이  -->
+<select id="selectMonth">
+	<option value="5">5월</option>
+	<option value="6">6월</option>
+	<option value="7">7월</option>
+</select>
+</div>
+
+<table class="table">
+   <tr>
+      <th>사번</th>
+      <td><input id="id"></td>
+   </tr>
+   <tr>
+      <th>사원명</th>
+      <td><input id="first_name"></td>   
+   </tr>
+   <tr>
+      <th>이메일</th>
+      <td><input id="email"></td>   
+   </tr>
+   <tr>
+      <th>급여</th>
+      <td><input id="salary"></td>   
+   </tr>
+   <tr>
+      <td colspan="2">
+      	<button id="addBtn2">추가 </button>
+      </td>   
+   </tr>
+</table>
+
+<table class="table">
+  <thead>
+  	<tr>
+  		<th>사번</th>
+  		<th>이름(firstname)</th>
+  		<th>이메일</th>
+  		<th>급여</th>
+  	</tr>
+  </thead>
+  <tbody id="list"></tbody>
+</table>
+
+<div id="show">
+<!-- 	<table border="2">
+	  <thead>
+	    <tr>
+		    <th>Sun</th>
+		    <th>Mon</th>
+		    <th>Tue</th>
+		    <th>Wed</th>
+		    <th>Thr</th>
+		    <th>Fri</th>
+		    <th>Sat</th>
+		 </tr>
+	  </thead>
+	  
+	  <tbody>
+	  	<tr>
+	  	   <td></td>
+	  	   <td></td>
+	  	   <td></td>
+	  	   <td></td>
+	  	   <td></td>
+	  	   <td></td>
+	  	   <td>1</td>
+	  	</tr>
+	  	<tr>
+	  	   <td>2</td>
+	  	   <td>3</td>
+	  	   <td>4</td>
+	  	   <td>5</td>
+	  	   <td>6</td>
+	  	   <td>7</td>
+	  	   <td>8</td>
+	  	</tr>
+	  </tbody>
+	
+	</table> -->
+</div>
+
+
 <script src="js/data.js">
 </script>
-<script src="js/dom1.js">
+<script src="js/obj1.js">
 </script>
+<!-- <script src="js/calendar.js">
+</script> -->
+<!-- <script src="js/dom1.js">
+</script>
+<script src="js/func1.js">
+</script>
+<!-- <script src="js/calendar_gm.js">
+</script> -->

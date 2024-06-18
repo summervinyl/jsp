@@ -47,10 +47,10 @@
 	document.getElementById('mpoint').value = "";
 	
  }
- const id = 'ser0';
+/* const id = 'ser0';
  const name = 'hhh';
  const phone = '010-2222';
- const point = 99;
+ const point = 99;*/
  
  //member = {} : 매개값으로 객체타입
  function addRow(member = {id, name, phone, point}){
@@ -142,13 +142,13 @@
  //이벤트 핸들러에서 사용시 = 이벤트 대상
  //함수 안에서 사용시 = 윈도우
  //객체안에서 사용시 객체 자신
- const obj = {
+/* const obj = {
 	name:'홍',
 	age: 10,
 	showInfo(){
 		return '이름은' + this.name;
 	}
- }
+ }*/
  
  
  //체크박스 
