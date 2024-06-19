@@ -2,25 +2,25 @@
  * js/ajax3.js
  */
 //멤버테이블 목록
- const xthp = new XMLHttpRequest(); 
- xthp.open('get', 'memberAjax.do'); //요청할 페이지 지정
- xthp.send();						//요청 정보 보내기
- xthp.onload = function(){			//실행할 함수
+const xthp = new XMLHttpRequest();
+xthp.open('get', 'memberAjax.do'); //요청할 페이지 지정
+xthp.send();						//요청 정보 보내기
+xthp.onload = function() {			//실행할 함수
 	console.log(xthp);
 	let data = JSON.parse(xthp.responseText);
 	data.forEach(user => {
 		document.getElementById('list').appendChild(makeRow(user));
 	});
- }
+}
 
 //json 문자열의 필드 이름을 활용.
 const fields = ['userId', 'userName', 'userPw', 'responsibility'];
 
 //json 파일로 페이지 만들기
-function makeRow(obj = {}){
+function makeRow(obj = {}) {
 	let tr = document.createElement('tr');
 	//tr.setAttribute('id', obj.userId); //<tr id='user01'
-	tr.addEventListener('dblclick', function(e){
+	tr.addEventListener('dblclick', function(e) {
 		document.getElementById('myModal').style.display = 'block';
 		//선택된 사용자의 이름, 비번을 모달창 input박스에 출력.
 		console.log(e, this);
@@ -39,8 +39,8 @@ function makeRow(obj = {}){
 	let td = document.createElement('td');
 	td.innerHTML = "<button class='btn btn-danger' onclick='delFuc(event)'>삭제</button>"
 	tr.appendChild(td);
-	
-	
+
+
 	//---
 	//let btn = document.createElement('button');
 	//btn.setAttribute('date-delId', obj.userId);
@@ -76,73 +76,95 @@ function makeRow(obj = {}){
 //수정 이벤트
 //더블클릭시 모달창 띄우고 아디와 비번 변경하고 수정버튼 누르고 완료
 //display: none인 모달을 더블 클릭시 block으로 변경하면 창이 나타난다.
-document.getElementById('modBtn').addEventListener('click', function(){
-	
+document.getElementById('modBtn').addEventListener('click', function() {
+	//console.log(e.currentTarget);
+	//사용자가 입력한 값 가져오기
 	let id = document.getElementById('modify_id').value;
 	let name = document.getElementById('modify_name').value;
 	let pw = document.getElementById('modify_pass').value;
-	
+
 	// ajax 생성
 	//정상적으로 정보가 업뎃이 되면 화면수정
 	//수정이 안 됐으면 화면 수정 ㄴㄴ
-	let targetTr = document.getElementById(id);
-	targetTr.children[1].innerHTML = name;
-	targetTr.children[2].innerHTML = pw;
+	//let targetTr = document.getElementById(id);
+	//targetTr.parentElement.children[1].innerHTML = name;
+	//targetTr.parentElement.children[2].innerHTML = pw;
+	//targetTr.children[1].innerHTML = name;
 	
-	const modAjax = new XMLHttpRequest();
-	modAjax.open('get', 'modAjax.do?id=' + id + '&name=' + name + '&pw=' + pw);
+	let targetTr = document.getElementById('list');
+	//console.log(targetTr);
+	//console.log(targetTr.childNodes);
+	//console.log(targetTr.children.children[1]);
+	//targetTr.children[0].children[1].innerHTML = name;
+	//targetTr.children[0].children[2].innerHTML = pw;
+	//console.log('대상 : ' + targetTr.children[2].innerHTML);
+	targetTr.children.forEach(function(ele, idx, ary) {
+		if (targetTr.children[idx] == id) {
+			targetTr.children[idx].children[1].innerHTML = name;
+			targetTr.children[idx].children[2].innerHTML = pw;
+		}
+	})
+
+/*	const modAjax = new XMLHttpRequest();
+	//modAjax.open('get', 'modAjax.do?id=' + id + '&name=' + name + '&pw=' + pw);
+	modAjax.open('get', 'modAjax.do');
 	modAjax.send();
-	modAjax.onload = function(){
-		
-	}
-	
-	
+	modAjax.onload = function() {
+		let data = JSON.parse(modAjax.responseText);
+		console.log(data);
+		if (data.return == 'ok') {
+			alert('변경 완료');
+		} else {
+			alert('변경 실패');
+		}
+	}*/
+
 	// 모달창 닫기
 	document.getElementById('myModal').style.dispaly = 'none';
 })
 
 
 //등록 버튼을 누르면 이벤트 추가
-document.getElementById('addBtn').addEventListener('click', function(){
+document.getElementById('addBtn').addEventListener('click', function() {
 	let id = document.getElementById('uid').value;
 	let pw = document.getElementById('upw').value;
 	let nm = document.getElementById('uname').value;
 	let auth = document.getElementById('auth').value;
-	
+
 	const addAjax = new XMLHttpRequest();
-	let url = 'addAjax.do?id=' + id + '&pw=' + pw + '&nm=' + nm + '&auth=' + auth;	
+	let url = 'addAjax.do?id=' + id + '&pw=' + pw + '&nm=' + nm + '&auth=' + auth;
 	addAjax.open('get', url);
 	addAjax.send();
-	addAjax.onload = function(){
+	addAjax.onload = function() {
 		let result = JSON.parse(addAjax.responseText);
-		if(result.retCode == 'OK') {
-			let newMem = {userId: id, userPw: pw, userName: nm, responsibility: auth};
+		if (result.retCode == 'OK') {
+			let newMem = { userId: id, userPw: pw, userName: nm, responsibility: auth };
 			document.getElementById('list').appendChild(makeRow(newMem));
 			alert(result.retMsg);
 		} else {
 			alert('실패');
 		}
 	}
-	
-/*	id = document.se .value;
-	pw = document.getElementById('').value;
-	nm = document.getElementById('').value;
-	auth = document.getElementById('').value;*/
+
+	/*	id = document.se .value;
+		pw = document.getElementById('').value;
+		nm = document.getElementById('').value;
+		auth = document.getElementById('').value;*/
 })
 
 //id값을 넣고 체인지 이벤트가 발생하면 id 체크 기능
-document.getElementById('uid').addEventListener('change', function(){
+document.getElementById('uid').addEventListener('change', function() {
 	let checkId = this.value;
 	const checkAjax = new XMLHttpRequest();
-	checkAjax.open('get', 'checkIdAjax.do?id='+checkId);
+	checkAjax.open('get', 'checkIdAjax.do?id=' + checkId);
 	checkAjax.send();
-	checkAjax.onload = function(){
+	checkAjax.onload = function() {
 		let result = JSON.parse(checkAjax.responseText);
-		if(result.retCode == 'Exist'){
+		if (result.retCode == 'Exist') {
 			alert('이미 존재하는 아이디입니다.');
 			//document.getElementById('addBtn').disabled;
 			document.querySelector('#addBtn').disabled = true;//비활성화
-		}else{
+		} else {
 			alert('등록 가능한 아이디입니다.');
 			document.querySelector('#addBtn').disabled = false; //활성화
 		}
@@ -174,16 +196,16 @@ function delFuc(e) {
 	console.log(e.target.parentElement.parentElement.children[0].innerText);
 	//e는 이벤트가 적용되는 대상, 즉 삭제버튼의 부모요소 = td, td의 부모요소 = tr, tr의 0번째 자식 
 	let delId = e.target.parentElement.parentElement.children[0].innerText;
-	
+
 	const delAjax = new XMLHttpRequest();
 	delAjax.open('get', 'delAjax.do?id=' + delId);
 	delAjax.send();
-	delAjax.onload = function(){
+	delAjax.onload = function() {
 		let result = JSON.parse(delAjax.responseText);
-		if(result.retCode == 'success'){
+		if (result.retCode == 'success') {
 			alert('삭제 성공');
 			e.target.parentElement.parentElement.remove();
-		}else{
+		} else {
 			alert('삭제 실패');
 		}
 	}

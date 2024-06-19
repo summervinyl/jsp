@@ -124,6 +124,7 @@ to {
 			<td colspan="2"><button id="addBtn">등록</button></td>
 		</tr>
 
+
 		<!-- 		<tr>
 			<td><button id="delBtn">삭제</button></td>
 		</tr> -->
@@ -146,14 +147,7 @@ to {
 			</tr>
 		</thead>
 
-		<tbody id="list">
-			<!-- 			<tr>
-				<td><button id="delBtn" class="btn btn-danger">삭제</button> </td>
-			</tr> -->
-			<!-- 			<tr>
-				<td><button id='delBtn' class='btn btn-danger' onclick="">삭제</button></td>
-			</tr> -->
-		</tbody>
+		<tbody id="list"></tbody>
 
 	</table>
 </div>

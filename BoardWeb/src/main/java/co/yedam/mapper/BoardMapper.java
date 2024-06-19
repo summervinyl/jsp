@@ -39,6 +39,7 @@ public interface BoardMapper {
 	//아이디 체크
 	int selectMemberAjax(String id);
 	
+	//아디 비번 수정
 	int updateMember(MemberVO mvo);
 	
 

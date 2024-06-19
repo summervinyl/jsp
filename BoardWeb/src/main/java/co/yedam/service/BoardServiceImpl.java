@@ -38,8 +38,7 @@ public class BoardServiceImpl implements BoardService {
 	public int boardTotal(SearchVO search) {
 		return mapper.getTotalCnt(search);
 	}
-	
-	
+		
 	@Override
 	public BoardVO getBoard(int bno) {
 		return mapper.selectBoard(bno);

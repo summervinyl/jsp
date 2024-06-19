@@ -47,7 +47,7 @@ public class FrontController extends HttpServlet {
 	
 	//생성자
 	public FrontController() {
-		map = new HashMap<>(); //HashMap : 컬렉션의 하나로 데이터를 키(Key)와 밸류(Value)의 짝으로 저장
+		map = new HashMap<>(); //HashMap : 컬렉션의 하나로 데이터를 키(Key)와 값(Value)의 짝으로 저장
 	}
 	
 	@Override

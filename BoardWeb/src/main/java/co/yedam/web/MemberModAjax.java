@@ -18,12 +18,19 @@ public class MemberModAjax implements Control {
 		// TODO 멤버 수정
 		String id = req.getParameter("id");
 		String name = req.getParameter("name");
-		String pw = req.getParameter("pw");
+		String pw = req.getParameter("pw");		
 		
-		
+		MemberVO mvo = new MemberVO();
+		mvo.setUserName(name);
+		mvo.setUserName(pw);
 		
 		BoardService svc = new BoardServiceImpl();
-		MemberVO mvo = svc.updateMember(id);
+		
+		if(svc.updateMember(mvo)) { //{"return" : "OK"} 
+			resp.getWriter().print("{\"return\" : \"ok\"}");
+		}else {
+			resp.getWriter().print("{\"return\" : \"fail\"}");			
+		}
 
 	}
 
