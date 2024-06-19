@@ -24,5 +24,14 @@ public interface BoardService {
 	MemberVO checkMember(String id, String pw);
 	
 	//회원가입
-	boolean addMember(BoardVO bvo);
+	boolean addMember(MemberVO mvo);
+	
+	//멤버 목록
+	List<MemberVO> memberLsit();
+	
+	boolean checkMemberId(String id);
+	
+	boolean removeMember(String id);
+	
+	boolean updateMember(MemberVO mvo);
 }

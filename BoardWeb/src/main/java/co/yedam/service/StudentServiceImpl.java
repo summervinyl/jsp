@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.mapper.StudentMapper;
+import co.yedam.vo.MemberVO;
 import co.yedam.vo.Student;
 
 public class StudentServiceImpl implements StudentService {
@@ -28,5 +29,6 @@ public class StudentServiceImpl implements StudentService {
 	public boolean modifyStudent(Student std) {
 		return mapper.updateStudent(std) == 1;
 	}
-
+	
+	
 }

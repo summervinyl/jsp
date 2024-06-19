@@ -95,5 +95,5 @@
 
 <!-- <script src="js/data.js">
 </script> -->
-<script src="js/variavle.js">
-</script>
+<!-- <script src="js/variavle.js">
+</script> -->

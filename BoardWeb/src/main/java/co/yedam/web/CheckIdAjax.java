@@ -11,31 +11,20 @@ import co.yedam.service.BoardService;
 import co.yedam.service.BoardServiceImpl;
 import co.yedam.vo.MemberVO;
 
-public class SignupControl implements Control {
+public class CheckIdAjax implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 회원이 입력한 정보 가져오기
-		String name = req.getParameter("name");
+		// TODO Auto-generated method stub
 		String id = req.getParameter("id");
-		String pw = req.getParameter("pw");
-		String res = req.getParameter("res").length() == 0 ? "User" : "Admin";
-		
-		// 세팅해주기
-		MemberVO bvo = new MemberVO();
-		bvo.setUserId(id);
-		bvo.setUserName(name);
-		bvo.setUserPw(pw);
-		bvo.setResponsibility(res);
 		
 		BoardService svc = new BoardServiceImpl();
-		
-		
-		if(svc.addMember(bvo)) {
-			resp.sendRedirect("loginForm.do");
-		}else {
-			resp.sendRedirect("signupForm.do");
+		if(svc.checkMemberId(id)) {		// {"retCode": "Exist"}
+			resp.getWriter().print("{\"retCode\": \"Exist\"}");
+		} else {
+			resp.getWriter().print("{\"retCode\": \"Not Exist\"}");			
 		}
+		
 
 	}
 

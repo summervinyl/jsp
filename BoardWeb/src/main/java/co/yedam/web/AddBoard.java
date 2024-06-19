@@ -15,7 +15,6 @@ public class AddBoard implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO 게시글 등록 버튼 클릭시 목록으로 이동하는 기능 구현
 		// 사용자의 입력 값 받아오기	
 		
 		String title = req.getParameter("title");

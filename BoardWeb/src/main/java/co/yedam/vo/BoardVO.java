@@ -13,12 +13,4 @@ public class BoardVO {
 	private String writer;
 	private int clickCnt;
 	private Date creationDate;
-	
-	
-	private String name;
-	private String id;
-	private String pw;
-	private String res;
-	
-
 }

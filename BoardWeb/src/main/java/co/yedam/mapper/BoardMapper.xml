@@ -130,15 +130,38 @@
 		and   user_pw = #{pw}
 	</select>
 	
-	<!-- 멤버 등록 : 회원 가입 -->
-	<insert id="insertMember" parameterType="co.yedam.vo.BoardVO">		
+	<!-- 멤버 등록 : 회원 가입 --> <!-- 멤버 등록 -->
+	<insert id="insertMember" parameterType="co.yedam.vo.MemberVO">		
 		insert into member_tbl (user_id, user_pw, user_name, responsibility)
-		values (#{id}, #{pw}, #{name}, #{res})
+		values (#{userId}, #{userPw}, #{userName}, #{responsibility})
 	</insert>
 	
 	<!-- 멤버 삭제 : 계정 삭제 -->
-	<delete id="deleteMember" parameterType="co.yedam.vo.BoardVO">
+<!-- 	<delete id="deleteMember" parameterType="co.yedam.vo.MemberVO">
 		delete from member_tbl where user_id = #{id}
+	</delete> -->
+	<delete id="deleteMember" parameterType="string">
+		delete from member_tbl where user_id = #{userId}
 	</delete>
+	
+	<!-- 멤버 목록 가져오기 -->
+	<select id="memberList" resultType="co.yedam.vo.MemberVO">
+		select *
+		from member_tbl
+	</select>
+	
+	<!--  -->
+	<select id="selectMemberAjax" parameterType="string">
+		select count(1)
+		from member_tbl
+		where user_id = #{userId}
+	</select>
+	
+	<!-- 멤버수정 -->
+	<update id="updateMember" parameterType="co.yedam.vo.MemberVO">
+		update member_tbl
+		set user_name = #{userName}, user_pw = #{userPw}
+		where user_id = #{userId}
+	</update>
 	
 </mapper>

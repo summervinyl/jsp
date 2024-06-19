@@ -26,8 +26,21 @@ public interface BoardMapper {
 	
 	//회원가입
 //	int insertMember(@Param("name") String name, @Param("id") String id, @Param("pw") String pw, @Param("res") String res);
-	int insertMember(BoardVO bvo);
+	//int insertMember(BoardVO bvo);
+	int insertMember(MemberVO bvo);
 	
-	//회원 탈퇴
-	int deleteMember(BoardVO bvo);
+	//회원 탈퇴(jsp), 멤버 삭제(ajax)
+	int deleteMember(String id);
+	//int deleteMember(MemberVO bvo);
+	
+	//멤버 리스트 가져오기
+	List<MemberVO> memberList();
+	
+	//아이디 체크
+	int selectMemberAjax(String id);
+	
+	int updateMember(MemberVO mvo);
+	
+
+	
 }

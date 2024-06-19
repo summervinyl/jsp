@@ -6,11 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.Control;
-import co.yedam.common.DataSource;
-import co.yedam.mapper.StudentMapper;
 import co.yedam.service.StudentService;
 import co.yedam.service.StudentServiceImpl;
 import co.yedam.vo.Student;
