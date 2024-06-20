@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.common.Control;
 import co.yedam.web.AddBoard;
 import co.yedam.web.AddForm;
+import co.yedam.web.AddReply;
 import co.yedam.web.AddStudent;
 import co.yedam.web.AjaxForm;
 import co.yedam.web.GetBoard;
@@ -28,6 +29,8 @@ import co.yedam.web.ModifyForm;
 import co.yedam.web.ProductControl;
 import co.yedam.web.RemoveBoard;
 import co.yedam.web.RemoveForm;
+import co.yedam.web.RemoveReply;
+import co.yedam.web.ReplyList;
 import co.yedam.web.SctiptForm;
 import co.yedam.web.SignupControl;
 import co.yedam.web.SignupForm;
@@ -123,7 +126,14 @@ public class FrontController extends HttpServlet {
 		
 		
 		//멤버 정보(이름, 비번) 변경
-		map.put("/modAjax.do", new MemberModAjax());
+		map.put("/modAjax.do", new MemberModAjax());		
+		
+		//댓글 관련 - 제이슨 문자열로 반환 (maven)
+		map.put("/replyListJson.do", new ReplyList());
+		//댓글삭제
+		map.put("/removeReply.do", new RemoveReply());
+		//댓글등록
+		map.put("/addReply.do", new AddReply());
 	}
 	
 	

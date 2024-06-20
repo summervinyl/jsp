@@ -19,7 +19,7 @@ const fields = ['userId', 'userName', 'userPw', 'responsibility'];
 //json 파일로 페이지 만들기
 function makeRow(obj = {}) {
 	let tr = document.createElement('tr');
-	//tr.setAttribute('id', obj.userId); //<tr id='user01'
+	tr.setAttribute('id', obj.userId); //<tr id='user01'>
 	tr.addEventListener('dblclick', function(e) {
 		document.getElementById('myModal').style.display = 'block';
 		//선택된 사용자의 이름, 비번을 모달창 input박스에 출력.
@@ -85,29 +85,17 @@ document.getElementById('modBtn').addEventListener('click', function() {
 
 	// ajax 생성
 	//정상적으로 정보가 업뎃이 되면 화면수정
-	//수정이 안 됐으면 화면 수정 ㄴㄴ
-	//let targetTr = document.getElementById(id);
-	//targetTr.parentElement.children[1].innerHTML = name;
-	//targetTr.parentElement.children[2].innerHTML = pw;
-	//targetTr.children[1].innerHTML = name;
+	//수정이 안 됐으면 화면 수정 ㄴㄴ	
+	let targetTr = document.getElementById(id);
 	
-	let targetTr = document.getElementById('list');
-	//console.log(targetTr);
-	//console.log(targetTr.childNodes);
-	//console.log(targetTr.children.children[1]);
-	//targetTr.children[0].children[1].innerHTML = name;
-	//targetTr.children[0].children[2].innerHTML = pw;
-	//console.log('대상 : ' + targetTr.children[2].innerHTML);
-	targetTr.children.forEach(function(ele, idx, ary) {
-		if (targetTr.children[idx] == id) {
-			targetTr.children[idx].children[1].innerHTML = name;
-			targetTr.children[idx].children[2].innerHTML = pw;
-		}
-	})
+	
+	console.log(targetTr, id, name, pw);
+	targetTr.children[1].innerHTML = name;
+	targetTr.children[2].innerHTML = pw;
 
-/*	const modAjax = new XMLHttpRequest();
-	//modAjax.open('get', 'modAjax.do?id=' + id + '&name=' + name + '&pw=' + pw);
-	modAjax.open('get', 'modAjax.do');
+	const modAjax = new XMLHttpRequest();
+	modAjax.open('get', 'modAjax.do?id=' + id + '&name=' + name + '&pw=' + pw);
+	//modAjax.open('get', 'modAjax.do');
 	modAjax.send();
 	modAjax.onload = function() {
 		let data = JSON.parse(modAjax.responseText);
@@ -117,8 +105,7 @@ document.getElementById('modBtn').addEventListener('click', function() {
 		} else {
 			alert('변경 실패');
 		}
-	}*/
-
+	}
 	// 모달창 닫기
 	document.getElementById('myModal').style.dispaly = 'none';
 })
@@ -211,5 +198,3 @@ function delFuc(e) {
 	}
 	console.log('버튼 누름');
 }
-
-

@@ -17,12 +17,15 @@ public class MemberModAjax implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO 멤버 수정
 		String id = req.getParameter("id");
-		String name = req.getParameter("name");
 		String pw = req.getParameter("pw");		
+		String name = req.getParameter("name");
 		
 		MemberVO mvo = new MemberVO();
 		mvo.setUserName(name);
-		mvo.setUserName(pw);
+		mvo.setUserId(id);
+		mvo.setUserPw(pw);
+		
+		System.out.println(mvo);
 		
 		BoardService svc = new BoardServiceImpl();
 		

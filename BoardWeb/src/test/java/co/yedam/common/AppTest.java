@@ -1,21 +1,63 @@
 package co.yedam.common;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 
-import co.yedam.mapper.BoardMapper;
-import co.yedam.service.BoardService;
-import co.yedam.service.BoardServiceImpl;
-import co.yedam.vo.BoardVO;
+import co.yedam.mapper.ReplyMapper;
+import co.yedam.vo.ReplyVO;
 
 public class AppTest {
 	
 public static void main(String[] args) {
 	
-	SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
+	//매퍼가 잘 코딩되었는지 테스트하는 용도
+	SqlSession sqlSession = DataSource.getInstance().openSession(true);
+	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+	
+	//인터페잇ㅡ에 구현해 메소드가 하나만 있는 인터페이스 : 함수형 인터페이스
+	/*
+	 * mapper.selectList(201).forEach(new Consumer<ReplyVO>() { public void
+	 * accept(ReplyVO t) { System.out.println(t); }; });
+	 */
+	//게시글 201번에 대한 댓글정보를 출력
+	//람다 표현식!
+	mapper.selectList(201).forEach(reply -> System.out.println(reply));
+	
+	//단건조회
+	/*
+	 * ReplyVO rvo = mapper.selectReply(1); System.out.println(rvo);
+	 */
+	
+	//댓글 입력
+	ReplyVO rvo = new ReplyVO();
+	rvo.setReply("배고프다");
+	rvo.setReplyer("사람");
+	rvo.setBoardNo(11);
+	
+	try {
+		if(mapper.insertReply(rvo) == 1) {
+			System.out.println("입력 성공");
+		}		
+	} catch (Exception e) {
+		System.out.println("예외 발생");
+	}
+	
+	
+	//댓글 삭제
+	if(mapper.deleteReply(6) == 1) {
+		System.out.println("삭제 성공");
+	} else {
+		System.out.println("삭제 실패");
+	}
+	mapper.selectList(201).forEach(reply -> System.out.println(reply));
+	
+	
+	//----------------------------------------------------------------------
+
+/*	SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
 	SqlSession sqlSession = sqlSessionFactory.openSession();
+	
 	
 	
 	//interface 구현
@@ -24,7 +66,7 @@ public static void main(String[] args) {
 	
 	SearchVO search = new SearchVO(1, "T", "자바");
 	
-	mapper.boardListPaging(search).forEach(bvo -> System.out.println(bvo));
+	mapper.boardListPaging(search).forEach(bvo -> System.out.println(bvo));*/
 	
 	
 	//목록 조회

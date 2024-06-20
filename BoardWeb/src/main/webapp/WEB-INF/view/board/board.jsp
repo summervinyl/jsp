@@ -5,7 +5,22 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  
-    
+ <style>
+ 	div.reply div{
+ 		margin: auto;
+ 	}
+ 	div.reply ul{
+ 		list-style-type: none;
+ 		margin-top: 3px;
+ 	}
+ 	div.reply li{
+ 		padding-top: 1px;
+ 		padding-bottom: 1px; 		
+ 	} 
+ 	div.reply span{
+ 		display: inline-block;
+ 	}
+ </style>
 <%-- <%@include file="../public/header.jsp" %> --%>
 <!-- include:포함시키다. -->
 <!-- 사용자 정의 태그   뒤에 /는 닫는 태그와 함께 씀-->
@@ -71,7 +86,46 @@
 	</table>
 </form>
 
+
+<!-- 댓글 관련 시작 -->
+<div class="container reply">
+<!-- 2.  -->
+	<div class="header">
+		<input class="col-sm-8" id="reply">
+		<button class="col-sm-3" id="addReply">등록</button>
+	</div>
+	
+<!-- 1. 댓글 목록 보여주기 -->
+	<div class="content">
+		<ul>
+			<li>
+				<span class="col-sm-1">글번호</span> <!-- 전체가 12라서 1/12만큼 자리 차지 / 스타일도 있으니 11기준으로 설정-->
+				<span class="col-sm-4">글내용</span>
+				<span class="col-sm-2">작성자</span>
+				<span class="col-sm-3">작성일시</span>
+				<span class="col-sm-1">삭제</span>
+			</li>
+			<li><hr /></li>
+			<!-- dom요소를 활용해서 아래와 같이 만들기. -->
+			<li style="display: none">
+				<span class="col-sm-1">3</span>
+				<span class="col-sm-4">글을 잘 보았습니다.</span>
+				<span class="col-sm-2">user01</span>
+				<span class="col-sm-3">2024-05-08 11:08:10</span>			
+				<span class="col-sm-1"><button onclick="deleteRow(event)">삭제</button></span>			
+			</li>
+		</ul>
+	</div>	
+
+
+</div>
+<!-- 댓글 관련 끝 -->
+
+
 <script>
+	//글번호 담아두기 - 댓글관련
+	const bno = "${board.boardNo}"; //${board.boardNo} jsp 표현식 //원본글에대한 정보
+	const replyer = "${loginID}"; //댓글 등록시 아이디값 저장
 	//button일 경우엔 클릭이벤트ㄹ를 해주ㅑ아 함.
 	document.querySelector('button.btn-warning').addEventListener('click', function(e){
 		//삭제 화면 이동일 경우에는 removeForm.do로 이동
@@ -83,3 +137,7 @@
 </script>
 <%-- <%@include file="../public/footer.jsp" %> --%>
 <%-- <jsp:include page="../public/footer.jsp"/> --%>
+
+
+<script src="js/replyService.js"></script>
+<script src="js/reply.js"></script>
