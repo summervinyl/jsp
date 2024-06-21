@@ -27,6 +27,7 @@ import co.yedam.web.MemberList;
 import co.yedam.web.MemberModAjax;
 import co.yedam.web.ModifyForm;
 import co.yedam.web.ProductControl;
+import co.yedam.web.PublicData;
 import co.yedam.web.RemoveBoard;
 import co.yedam.web.RemoveForm;
 import co.yedam.web.RemoveReply;
@@ -35,6 +36,7 @@ import co.yedam.web.SctiptForm;
 import co.yedam.web.SignupControl;
 import co.yedam.web.SignupForm;
 import co.yedam.web.StudentForm;
+import co.yedam.web.TatalCnt;
 import co.yedam.web.DeleteAccoutForm;
 import co.yedam.web.ModifyBoard;
 import co.yedam.web.BoardLsit;
@@ -134,6 +136,9 @@ public class FrontController extends HttpServlet {
 		map.put("/removeReply.do", new RemoveReply());
 		//댓글등록
 		map.put("/addReply.do", new AddReply());
+		//댓글 전체 건수
+		map.put("/replyTotalCnt.do", new TatalCnt());
+		map.put("/publicData.do", new PublicData());
 	}
 	
 	

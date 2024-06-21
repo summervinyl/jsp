@@ -21,6 +21,34 @@
  		display: inline-block;
  	}
  </style>
+ 
+ <style>
+	.center {
+	  text-align: center;
+	}
+	
+	.pagination {
+	  display: inline-block;
+	}
+	
+	.pagination a {
+	  color: gray;
+	  float: left;
+	  padding: 8px 16px;
+	  text-decoration: none;
+	  transition: background-color .3s;
+	  border: 1px solid #ddd;
+	  margin: 0 4px;
+	}
+	
+	.pagination a.active {
+	  background-color: #fac1c1;
+	  color: black;
+	  border: 1px solid fab4b4;
+	}
+	
+	.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
 <%-- <%@include file="../public/header.jsp" %> --%>
 <!-- include:포함시키다. -->
 <!-- 사용자 정의 태그   뒤에 /는 닫는 태그와 함께 씀-->
@@ -106,7 +134,7 @@
 				<span class="col-sm-1">삭제</span>
 			</li>
 			<li><hr /></li>
-			<!-- dom요소를 활용해서 아래와 같이 만들기. -->
+			<!-- dom요소를 활용해서 아래와 같이 만들기, 템플릿 역할. -->
 			<li style="display: none">
 				<span class="col-sm-1">3</span>
 				<span class="col-sm-4">글을 잘 보았습니다.</span>
@@ -117,6 +145,16 @@
 		</ul>
 	</div>	
 
+	<div class="footer">
+		<div class="center">
+			<div class="pagination">
+				<a href="#">1</a>
+				<a href="#" class="active">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+			</div>
+		</div>
+	</div>
 
 </div>
 <!-- 댓글 관련 끝 -->

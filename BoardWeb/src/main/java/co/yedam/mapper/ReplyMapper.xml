@@ -16,6 +16,20 @@
 		where  board_no = #{boardNo}
 	</select>
 	
+	<!--  -->
+	<select id="selectListPaging">
+		select b.*
+		from  (select /*+index_desc(r reply_pk)*/ rownum rn, r.*
+               from reply_tbl r
+               where board_no = #{boardNo}) b
+        <!-- < 쓰면 구문오류 발생해서 CDATA사용 -->
+        <![CDATA[
+        where  b.rn <= (#{page}) * 5
+        ]]>
+        and    b.rn > (#{page} -1) * 5
+	</select>
+	
+	
 	<!-- 단건 조회 -->
 	<select id="selectReply" parameterType="int">
 		select reply_no,
@@ -43,5 +57,12 @@
 		from reply_tbl
 		where reply_no = #{replyNo}
 	</delete>
+	
+	<!-- 댓글 건수 가져오기 -->
+	<select id="selectReplyCnt" parameterType="int">
+		select count(1)
+		from   reply_tbl
+		where  board_no = #{bno}
+	</select>
 
 </mapper>

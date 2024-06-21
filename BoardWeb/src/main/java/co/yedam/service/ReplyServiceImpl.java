@@ -12,10 +12,16 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	SqlSession sqlSession = DataSource.getInstance().openSession(true); //openSession() true 넣으면 자동 커밋
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+	
+	/*
+	 * @Override public List<ReplyVO> replyList(int boardNo) { // TODO
+	 * Auto-generated method stub return mapper.selectList(boardNo); }
+	 */
+	
 	@Override
-	public List<ReplyVO> replyList(int boardNo) {
+	public List<ReplyVO> replyList(int boardNo, int page) {
 		// TODO Auto-generated method stub
-		return mapper.selectList(boardNo);
+		return mapper.selectListPaging(boardNo, page);
 	}
 	@Override
 	public ReplyVO getReply(int replyNo) {
@@ -33,6 +39,9 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.deleteReply(replyNo) == 1;
 	}
 	
-
-
+	@Override
+	public int getTotalCnt(int bno) {
+		// TODO Auto-generated method stub
+		return mapper.selectReplyCnt(bno);
+	}
 }

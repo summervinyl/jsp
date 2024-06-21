@@ -19,7 +19,7 @@
 	
 	
 	<label>작성자</label>
-	<input type="text" name="writer" value=<c:out value="${loginID}" /> >
+	<input type="text" name="writer" readonly value=<c:out value="${loginID}" /> >
 	
 	<label>내용</label>
 	<textarea class="form-control" name="content"></textarea>
