@@ -5,7 +5,7 @@
 
 <h3> 회원가입 페이지 </h3>
 
-<form action="signup.do">
+<form action="signup.do" method="post" enctype="multipart/form-data"> <!-- multipart : 파일 전송 -->
   <table class="table">
   	<tr>
   		<th>이름</th><td><input type="text" name="name"></td>
@@ -21,6 +21,10 @@
   	
   	<tr>
   		<th>권한</th><td><input type="text" name="res"></td>
+  	</tr>
+  	
+	<tr>
+  		<th>이미지</th><td><input class="form-control" type="file" name="myImage"></td>
   	</tr>
   	
   	<tr>

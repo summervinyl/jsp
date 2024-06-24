@@ -89,4 +89,9 @@ public class BoardServiceImpl implements BoardService {
 	public boolean updateMember(MemberVO mvo) {
 		return mapper.updateMember(mvo) == 1;
 	}
+
+	@Override
+	public boolean addMemberImage(MemberVO mvo) {
+		return mapper.insertMember(mvo) == 1;
+	}
 }

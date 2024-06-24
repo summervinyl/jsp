@@ -64,5 +64,21 @@
 		from   reply_tbl
 		where  board_no = #{bno}
 	</select>
+	
+	<!-- 마이바티스 foreach 반복문 : collection="array" = 얼리어스 // item="center" = 반복변수 -->
+	<insert id="insertCenter">
+		insert into center_tbl (id, center_name, sido, phone_number, address)
+		<foreach collection="array" item="center" open="select " close=" from dual" separator=" from dual union all select "> <!-- 공백   -->
+			#{center.id}, #{center.centerName}, #{center.sido}, #{center.phoneNumber}, #{center.address}
+		</foreach>		
+	</insert>
+	
+	
+	<!-- 센터 개수  -->
+	<select id="centerBysido" resultType="map">
+		select sido as "sido", count(1) as "count"
+		from center_tbl
+		group by sido
+	</select>
 
 </mapper>

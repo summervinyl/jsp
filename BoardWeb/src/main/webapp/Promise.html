@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <p>
+        <script>
+            async function promiseFnc(){
+                 // new Promise(성공했을때매개값, 실패했을때매개값)
+                new Promise((resolve, reject) => {
+                    setTimeout(function(){                  //비동기방식
+                        resolve('Fail'); //resolve:해결하다
+                    }, 1000);    
+                })
+                .then(function(result){              //동기방식
+                    console.log(result);
+                })
+                .catch(function(err){
+                    console.log('err', err);
+                });
+
+                //서버 페이지 호출하고 직접 사용할 때 사용
+                // new Promise(성공했을때매개값, 실패했을때매개값)
+                // const promise = await new Promise((resolve, reject) => {
+                //     setTimeout(function(){                  //비동기방식
+                //         resolve('OK'); //resolve:해결하다
+                //     }, 1000);    
+                // });
+
+                //성공했을 경우, then 매개값 함수
+                // promise.then(function(result){              //동기방식
+                //     console.log(result);
+                // })
+                // //실패했을경우
+                //        .catch(function(err){
+                //         console.log(err);
+                //        });
+            }
+
+            promiseFnc();
+
+        </script>
+    </p>
+
+</body>
+</html>

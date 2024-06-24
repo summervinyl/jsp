@@ -15,6 +15,8 @@
 주소 검색: <input type="text" id="search" class="col-sm-6" placeholder="ex)'동구'입력하고 검색하면 동구를 포함한 목록이 출력">
 <button id="findBtn">검색</button>
 
+<!-- public.js에 click 이벤트 생성 -->
+<button id="centerDB">센터DB생성</button>
 
 <table class="table">
     <thead>

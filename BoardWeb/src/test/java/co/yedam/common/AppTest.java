@@ -1,23 +1,64 @@
 package co.yedam.common;
 
-import java.util.function.Consumer;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.mapper.ReplyMapper;
-import co.yedam.vo.ReplyVO;
 
 public class AppTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
+		
+		//-----------------------------------
+		 SqlSession sqlSession = DataSource.getInstance().openSession(true);
+		 ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+		 
+		 List<Map<String, Object>> result = mapper.centerBysido();
+		 for(Map<String, Object> map : result) {
+			 Set<String> keyset = map.keySet(); //key값만 가져와서 set컬렉션에 담겠습니다.
+//			 for(String key : keyset) {
+//				 System.out.println("\tkey: " + key + "\tvalue: " + map.get(key));			 
+//			 }
+			 System.out.println(map.get("sido") + "\t" + map.get("count"));
+			 System.out.println("-------------------------------------------"); //데이터 한 건당 구분선
+		 }
+		
+		
+		//----------센터정보입력 테스트 -----------------//
+//		 SqlSession sqlSession = DataSource.getInstance().openSession(true);
+//		 ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+//		 
+//		 CenterVO cvo1 = new CenterVO();
+//		 cvo1.setId("id1");
+//		 cvo1.setAddress("add1");
+//		 cvo1.setCenterName("cenNa1");
+//		 cvo1.setSido("sido1");
+//		 cvo1.setPhoneNumber("p1");
+//		 
+//		 CenterVO cvo2 = new CenterVO();
+//		 cvo2.setId("id2");
+//		 cvo2.setAddress("add2");
+//		 cvo2.setCenterName("cenNa2");
+//		 cvo2.setSido("sido2");
+//		 cvo2.setPhoneNumber("p2");
+//		 
+//		 
+//		 CenterVO[] centers = {cvo1, cvo2};
+//		 int r = mapper.insertCenter(centers);
+		// System.out.println(r + "건 입력.");
+		
+		
 		
 		
 		//----------------------------------------------------------------------
 		//댓글 페이지 조회ㅐ
-		 SqlSession sqlSession = DataSource.getInstance().openSession(true);
-		 ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
-		 
-		 mapper.selectListPaging(11, 1).forEach(reply -> System.out.println(reply));
+//		 SqlSession sqlSession = DataSource.getInstance().openSession(true);
+//		 ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+//		 
+//		 mapper.selectListPaging(11, 1).forEach(reply -> System.out.println(reply));
 		
 
 		// ----------------------------------------------------------------------

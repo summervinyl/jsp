@@ -21,5 +21,6 @@
         	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="script.do">java script</a>
         	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="ajax.do">Ajax 연습</a>
         	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="publicData.do">공공데이터포털</a>
+        	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="chartForm.do">센터 차트</a>
     </div>
 </div>

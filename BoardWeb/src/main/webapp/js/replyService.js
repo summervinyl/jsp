@@ -50,5 +50,6 @@ const svc = {
 		xhr.send();
 		xhr.onload = successCall;
 	}
+	
 
 }

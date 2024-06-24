@@ -20,6 +20,7 @@ import co.yedam.web.LoginControl;
 import co.yedam.web.LoginForm;
 import co.yedam.web.LogoutControl;
 import co.yedam.web.MainControl;
+import co.yedam.web.MapForm;
 import co.yedam.web.MemberAddAjax;
 import co.yedam.web.MemberAjax;
 import co.yedam.web.MemberDelAjax;
@@ -40,6 +41,9 @@ import co.yedam.web.TatalCnt;
 import co.yedam.web.DeleteAccoutForm;
 import co.yedam.web.ModifyBoard;
 import co.yedam.web.BoardLsit;
+import co.yedam.web.CenterChart;
+import co.yedam.web.CenterInfo;
+import co.yedam.web.ChartForm;
 import co.yedam.web.CheckIdAjax;
 
 // 2024-06-10 월요일 JSP 첫 날
@@ -139,6 +143,17 @@ public class FrontController extends HttpServlet {
 		//댓글 전체 건수
 		map.put("/replyTotalCnt.do", new TatalCnt());
 		map.put("/publicData.do", new PublicData());
+		
+		// map api 호출
+		map.put("/map.do", new MapForm());
+		
+		// json 문자열 -> DB에 insert
+		map.put("/uploadCenter.do", new CenterInfo());
+		
+		//센터 차트 보여줄 화면으로 이동
+		map.put("/chartForm.do", new ChartForm());
+		//
+		map.put("/centerChart.do", new CenterChart());
 	}
 	
 	
