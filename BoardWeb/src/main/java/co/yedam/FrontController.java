@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.common.Control;
 import co.yedam.web.AddBoard;
 import co.yedam.web.AddForm;
+import co.yedam.web.AddMember;
+import co.yedam.web.AddMemberForm;
 import co.yedam.web.AddReply;
 import co.yedam.web.AddStudent;
 import co.yedam.web.AjaxForm;
@@ -104,10 +106,12 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new LogoutControl());
 		
 		//회원가입 페이지로 이동
-		map.put("/signupForm.do", new SignupForm());
+		//map.put("/signupForm.do", new SignupForm());
+		map.put("/addMemberForm.do", new AddMemberForm());
 		
 		//회원가입 등록을 누르면 기능 작동
-		map.put("/signup.do", new SignupControl());
+		//map.put("/signup.do", new SignupControl());
+		map.put("/addMember.do", new AddMember());
 		
 		//회원탈퇴 페이지로 이동
 		map.put("/deleteAccout.do", new DeleteAccoutForm());

@@ -70,10 +70,10 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.memberList();
 	}
 
-	@Override
-	public boolean addMember(MemberVO mvo) {
-		return mapper.insertMember(mvo) == 1;
-	}
+
+	@Override public boolean addMember(MemberVO mvo) {
+		return mapper.insertMember(mvo) == 1; }
+	 
 
 	@Override
 	public boolean checkMemberId(String id) {

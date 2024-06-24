@@ -10,7 +10,7 @@
         <c:choose>
           <c:when test="${empty loginID }">
 	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">login</a>
-	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="signupForm.do">sign up</a>
+	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addMemberForm.do">sign up</a>
           </c:when>
           <c:otherwise>
 	        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">게시글 등록</a>

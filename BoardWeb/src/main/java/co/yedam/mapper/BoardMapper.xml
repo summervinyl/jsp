@@ -137,8 +137,8 @@
 	</insert> -->
 	
 	<insert id="insertMember" parameterType="co.yedam.vo.MemberVO">		
-		insert into member_tbl (user_id, user_pw, user_name, responsibility, image)
-		values (#{userId}, #{userPw}, #{userName}, #{responsibility}, #{image})
+		insert into member_tbl (user_id, user_pw, user_name, image)
+		values (#{userId}, #{userPw}, #{userName}, #{image})
 	</insert>
 	
 	<!-- 멤버 삭제 : 계정 삭제 -->
