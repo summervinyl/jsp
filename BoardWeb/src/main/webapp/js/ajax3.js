@@ -14,10 +14,49 @@ xthp.onload = function() {			//실행할 함수
 }
 
 //json 문자열의 필드 이름을 활용.
-const fields = ['userId', 'userName', 'userPw', 'responsibility'];
+const fields = ['userId', 'userName', 'userPw', 'image'];
 
 //json 파일로 페이지 만들기
 function makeRow(obj = {}) {
+	let tr = document.createElement('tr');
+	tr.setAttribute('id', obj.userId); //<tr id='user01'>
+	
+	tr.addEventListener('dblclick', function(e) {
+		document.getElementById('myModal').style.display = 'block';
+		//선택된 사용자의 이름, 비번을 모달창 input박스에 출력.
+		console.log(e, this);
+		document.getElementById('modify_name').value = this.children[1].innerHTML;
+		document.getElementById('modify_pass').value = this.children[2].innerHTML;
+		document.getElementById('modify_id').value = this.children[0].innerHTML;
+	})
+	
+	//var delBtn = document.createElement('button'); //del
+	//delBtn.innerHTML = '삭제';
+	fields.forEach(field => { 				//필드의 개수만큼 td 만들기
+		let td = document.createElement('td');
+		td.innerHTML = obj[field];
+		tr.appendChild(td);
+		//tr.appendChild(delBtn); //del
+	});
+	let td = document.createElement('td');
+	td.innerHTML = "<button class='btn btn-danger' onclick='delFuc(event)'>삭제</button>"
+	tr.appendChild(td);
+
+
+	//---
+	//let btn = document.createElement('button');
+	//btn.setAttribute('date-delId', obj.userId);
+	//btn.addEventListener('click', removeFnc);
+	//btn.innerHTML = '삭제';
+	//td.appendChild(btn);
+	//tt.appendChild(td);	
+	//--	
+	return tr;
+}
+
+
+
+/*function makeRow(obj = {}) {
 	let tr = document.createElement('tr');
 	tr.setAttribute('id', obj.userId); //<tr id='user01'>
 	tr.addEventListener('dblclick', function(e) {
@@ -50,7 +89,7 @@ function makeRow(obj = {}) {
 	//tt.appendChild(td);	
 	//--	
 	return tr;
-}
+}*/
 
 //--
 /*function removeFnc(e){
@@ -83,13 +122,12 @@ document.getElementById('modBtn').addEventListener('click', function() {
 	let name = document.getElementById('modify_name').value;
 	let pw = document.getElementById('modify_pass').value;
 
-	// ajax 생성
+	// ajax 생성 - 수정하면 바로 수정된 화면 출력되게 하는 
 	//정상적으로 정보가 업뎃이 되면 화면수정
 	//수정이 안 됐으면 화면 수정 ㄴㄴ	
-	let targetTr = document.getElementById(id);
+	let targetTr = document.getElementById(id);	
 	
-	
-	console.log(targetTr, id, name, pw);
+	//console.log(targetTr, id, name, pw);
 	targetTr.children[1].innerHTML = name;
 	targetTr.children[2].innerHTML = pw;
 
@@ -113,6 +151,48 @@ document.getElementById('modBtn').addEventListener('click', function() {
 
 //등록 버튼을 누르면 이벤트 추가
 document.getElementById('addBtn').addEventListener('click', function() {
+	const formData = new FormData(); //form data
+	const fileField = document.querySelector('input[type="file"]');
+	
+	formData.append("id", document.getElementById('uid').value);
+	formData.append("pw", document.getElementById('upw').value);
+	formData.append("name", document.getElementById('uname').value);
+	formData.append("myImage", fileField.files[0]);
+	
+	upload(formData);		
+})
+
+//fetch 파일 업로드
+async function upload(formData) {
+  try {
+    const response = await fetch("addMember.do", {
+      method: "PUT",
+      body: formData,
+    });
+    const result = await response.json();
+    if(result.retCode == "OK"){
+		let id = document.getElementById('uid').value;
+		let pw = document.getElementById('upw').value;
+		let nm = document.getElementById('uname').value;
+		let auth = document.getElementById('auth').value;
+	
+		//document.getElementById('list').appendChild(makeRow({userId : id, userPw : pw, userName : nm, responsibility : auth}));
+		document.getElementById('list').appendChild(makeRow({userId : id, userName : nm, responsibility : auth}));
+		
+		document.getElementById('uid').value = '';
+		document.getElementById('upw').value = '';
+		document.getElementById('uname').value = '';
+		document.getElementById('auth').value = '';
+	}
+  } catch (error) {
+    console.error("실패:", error);
+  }
+}
+
+
+
+
+function addMemberFnc() {
 	let id = document.getElementById('uid').value;
 	let pw = document.getElementById('upw').value;
 	let nm = document.getElementById('uname').value;
@@ -125,19 +205,23 @@ document.getElementById('addBtn').addEventListener('click', function() {
 	addAjax.onload = function() {
 		let result = JSON.parse(addAjax.responseText);
 		if (result.retCode == 'OK') {
-			let newMem = { userId: id, userPw: pw, userName: nm, responsibility: auth };
+			//let newMem = { userId: id, userPw: pw, userName: nm, responsibility: auth };
+			let newMem = { userId: id, userName: nm, responsibility: auth };
 			document.getElementById('list').appendChild(makeRow(newMem));
 			alert(result.retMsg);
+			
+			document.getElementById('uid').value = '';
+			document.getElementById('upw').value = '';
+			document.getElementById('uname').value = '';
+			document.getElementById('auth').value = '';
+			
 		} else {
 			alert('실패');
 		}
 	}
+}
 
-	/*	id = document.se .value;
-		pw = document.getElementById('').value;
-		nm = document.getElementById('').value;
-		auth = document.getElementById('').value;*/
-})
+
 
 //id값을 넣고 체인지 이벤트가 발생하면 id 체크 기능
 document.getElementById('uid').addEventListener('change', function() {

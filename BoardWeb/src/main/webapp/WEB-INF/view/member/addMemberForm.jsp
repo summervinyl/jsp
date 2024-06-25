@@ -4,11 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <h3>회원등록</h3>
-<c:if test="${not empty message }">
-	<p>${message }</p>
-</c:if>
 
-<form action="addMember.do" method="post" enctype="multipart/form-data">
+<form action="addMember.do" method="post" enctype="multipart/form-data"> <!-- addMember.do로 가면 멀티파트를 처리하는 기능이 있음. -->
 	<table class="table">
 		<tr>
 			<th>아이디</th><td><input class="form-control" type="text" name="id"></td>

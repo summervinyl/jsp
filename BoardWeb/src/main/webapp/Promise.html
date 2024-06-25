@@ -5,14 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <p>
-        <script>
+	<p>
+		<script>
             async function promiseFnc(){
-                 // new Promise(성공했을때매개값, 실패했을때매개값)
+                 // new Promise(성공했을때실행되는함수, 실패했을때실행되는함수)
                 new Promise((resolve, reject) => {
                     setTimeout(function(){                  //비동기방식
                         resolve('Fail'); //resolve:해결하다
-                    }, 1000);    
+                    }, 1000);
                 })
                 .then(function(result){              //동기방식
                     console.log(result);
@@ -41,8 +41,36 @@
 
             promiseFnc();
 
+            
+            
+			//https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch#%ED%8C%8C%EC%9D%BC_%EC%97%85%EB%A1%9C%EB%93%9C
+            async function upload(formData) {
+            try {
+                const response = await fetch("https://example.com/profile/avatar", {
+                method: "PUT",
+                body: formData,
+                });
+                const result = await response.json();
+                console.log("성공:", result);
+            } catch (error) {
+                console.error("실패:", error);
+            }
+            }
+
+            const formData = new FormData(); //멀티파트 요청을 처리해주는 객체
+            const fileField = document.querySelector('input[type="file"]');
+
+            formData.append("id", "abc123");
+            formData.append("pw", "abc123");
+            // <form action="" method="post" enctype="mutipart/form-data">
+            //	<input name="id">
+            //	<input name="pw">
+            //	<input type="file" name="myImage">
+            formData.append("avatar", fileField.files[0]); //file의 1번째 파일을 avatar라는 이름으로 가져오겟다..?
+            upload(formData);
+
         </script>
-    </p>
+	</p>
 
 </body>
 </html>

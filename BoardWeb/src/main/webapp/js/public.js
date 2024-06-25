@@ -30,7 +30,7 @@ xhr.onload = function(){
 
 		
 
-//센터 정보 생성하기
+//센터 DB 정보 생성하기 (get과 post)
 document.getElementById('centerDB').addEventListener('click', createCenterInfo);
 function createCenterInfo(){
 	// 1. OpenAPI 호출해서 데이터 fetch로 받아오기 (xml or json)
@@ -40,7 +40,7 @@ function createCenterInfo(){
 		.then(result => {
 			//console.log(result);
 			let centers = result.data; // [{}, {}, {}] => [{"id":"hong"}]
-			return fetch('uploadCenter.do', {  //문자열 값을 DB에 전달 -- uploadCenter.do:옵션객체
+			return fetch('uploadCenter.do', {  //문자열 값을 DB에 전달 -- uploadCenter.do:옵션객체에 전달
 				method: 'post', //전달되는 값이 body영역에 저장. get은 헤드에 들어가기 때문에 인코딩이 필요없음.
 				headers: { 'Content-Type' : "application/json" }, //키=값&키=값
 				//Content-Type : Http 통신에서 전송되는 데이터의 타입을 명시하기 위해 header에 실리는 정보. 즉, api 요청 시 request에 실어 보내는 데이터(body)의 타입 정보다. -> application:지원
@@ -58,8 +58,6 @@ function createCenterInfo(){
 			}			
 		})
 		.catch(err => console.log(err));
-		
-
 }
 
 
@@ -68,12 +66,12 @@ const target = document.querySelector('#centerList'); //하위 목록
 // 화살표 함수로 간략하게
 //리소스 요청 결과를 받아오면 then메소드의 매개변수에 결과값(json 문자열을 파싱해서)이 담긴다.
 fetch(url) //promise 객체로 반환
-	.then(result => result.json()) // 문자열 [{"id:"1, "center:"...}] -> [{}, {}]
+	.then(result => result.json()) // 문자열 [{"id":"1", "center":...}] -> [{}, {}]
 	//result.json()) = 페치가 반환해주는 데이터를 json 문자열로 변환해서 반환
 	.then(result => {
 		let sidos = [];
-		result.data.forEach(center => {
-			target.appendChild(makeRow(center));			
+		result.data.forEach(center => { //result.datad를 순회한다, result.data의 요소 중에 center를 갖고 온다.
+			target.appendChild(makeRow(center));
 			console.log(center);
 			if(sidos.indexOf(center.sido) == -1){
 				//console.log(sidos);
@@ -99,7 +97,7 @@ function searchFnc2(){
 			result.data.forEach(center => {				
 				if(center.sido.indexOf(searchValue) != -1){ //indexOf, search
 					target.appendChild(makeRow(center));
-					//searchValue.styr('color', 'red');
+					//searchValue.style('color', 'red');
 				}
 			});
 		});

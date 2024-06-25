@@ -121,7 +121,7 @@ to {
 		</tr>
 		
 		<tr>
-			<th>파일</th><td><input class="form-control" type="file" id="myPic"></td>
+			<th>파일</th><td><input class="form-control" type="file" id="myPic"></td> <!-- onchange="console.log(event)" 사진을 선택했을 때 정보보기-->
 		</tr>
 		
 		<tr align="center">

@@ -23,14 +23,14 @@ public class AddMember implements Control {
 		// Multipart요청 (1.요청정보 2.저장위치 3.최대크기 4.인코딩 5.리네임정책:파일을서버에올릴때파일명이중복될때,변경규칙지정)
 		String savePath = req.getServletContext().getRealPath("images"); //프로젝트를 기준으로 경로 지정
 		int maxSize = 1024 * 1024 * 5;
-		String encoding = "utf-8";	
+		String encoding = "utf-8";
 		
 		MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, encoding, new DefaultFileRenamePolicy()); //DefaultFileRenamePolicy : cos 라이브러리가 갖고 있는
 		
 		String id = mr.getParameter("id");
 		String pw = mr.getParameter("pw");
-		String nm = mr.getParameter("name");
-		String img = mr.getParameter("myImage");
+		String nm = mr.getParameter("name");		
+		String img = mr.getFilesystemName("myImage"); //getFilesystemName 파일을 넘겨받을 때,
 
 		MemberVO mvo = new MemberVO();
 		mvo.setUserId(id);
@@ -42,10 +42,19 @@ public class AddMember implements Control {
 
 		try {
 			if(svc.addMemberImage(mvo)) {
-				resp.sendRedirect("memberList.do");
+				if(req.getMethod().equals("POST")) { //요청방식이 form이면
+					resp.sendRedirect("memberList.do");					
+				} else if(req.getMethod().equals("PUT")){
+					//{"retCode":"OK"}
+					resp.getWriter().print("{\"retCode\":\"OK\"}");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			if(req.getMethod().equals("PUT")){
+				//{"retCode":"OK"}
+				resp.getWriter().print("{\"retCode\":\"NG\"}");
+			}
 		}
 
 	}

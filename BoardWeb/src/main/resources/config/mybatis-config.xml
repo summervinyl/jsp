@@ -5,6 +5,7 @@
 <configuration>
    <settings>
 		 <setting name="mapUnderscoreToCamelCase" value="true"/>
+		 <setting name="jdbcTypeForNull" value="NULL"/> <!-- 이미지 파일을 첨부 안 하면 NULL 값으로 입력되게 세팅 -->
    </settings>
    <environments default="development">
     <environment id="development">

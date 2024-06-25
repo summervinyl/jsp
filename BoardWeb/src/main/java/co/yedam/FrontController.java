@@ -84,7 +84,7 @@ public class FrontController extends HttpServlet {
 		//게시글 등록
 		map.put("/addBoard.do", new AddBoard());
 		
-		//게시글 삭제 화면으로 이동 -- 사용자가 삭제 이동으로 버튼을 클릭시 게시글 상세 화면 표출, 삭제버튼 구현ㄴ
+		//게시글 삭제 화면으로 이동 -- 사용자가 삭제 이동으로 버튼을 클릭시 게시글 상세 화면 표출, 삭제버튼 구현
 		map.put("/removeForm.do", new RemoveForm());
 		
 		//게시글 삭제하기! -> 이동했을 시 사용자가 입력한 값을 세팅하고, 삭제 성공시 이동할 페이지와, 실패시 이동할 페이지 설정
